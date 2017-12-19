@@ -14,12 +14,21 @@
     "lodash": "~2.4.1",
     "angular-socket-io": "~0.7.0",
     "angular-validation-match": "~1.5.2",
-    "bootstrap": "3.1.1"
+    "bootstrap": "^3.3.7"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/js/bootstrap.js",
+        "dist/css/bootstrap.css",
+        "less/bootstrap.less"
+      ]
+    }
   },
   "devDependencies": {
     "angular-mocks": "~1.5.0"
   },
   "resolutions": {
-    "bootstrap": "3.1.1"
+    "bootstrap": "^3.3.7"
   }
 }
