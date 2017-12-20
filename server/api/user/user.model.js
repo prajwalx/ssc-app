@@ -12,6 +12,10 @@ var UserSchema = new Schema({
     lowercase: true,
     required: true
   },
+  mobile:{
+    type: String,
+    required: true,
+  },
   role: {
     type: String,
     default: 'user'
@@ -65,6 +69,23 @@ UserSchema
   .validate(function(password) {
     return password.length;
   }, 'Password cannot be blank');
+
+  //Validate empty mobile number,my
+UserSchema
+  .path('mobile')
+  .validate(function(mobile) {
+    return mobile.length;
+  }, 'Mobile cannot be blank');
+
+//Validate Alphabetic mobile Nunber string,my
+UserSchema
+  .path('mobile')
+  .validate(function(mobile) {
+    if(/^\d{10}$/.test(mobile))
+    return 1;
+    else
+    return 0;
+  }, 'Enter Valid Mobile Number');
 
 // Validate email is not taken
 UserSchema

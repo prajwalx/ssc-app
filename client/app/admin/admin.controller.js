@@ -9,8 +9,11 @@
     }
 
     delete(user) {
+      var x = confirm('Are you sure , You want to delete');
+      if(x){
       user.$remove();
       this.users.splice(this.users.indexOf(user), 1);
+    }
     }
   }
 
