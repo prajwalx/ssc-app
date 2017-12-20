@@ -18,7 +18,8 @@ class ForgotComponent {
     // console.log(this.res);
     $scope.$on('$destroy', function() {
       // socket.unsyncUpdates('thing');
-      sessionStorage.clear();//TODO:clear only msg{}
+      //sessionStorage.clear();//TODO:clear only msg{}
+      sessionStorage.removeItem('msg');
       //this.submitted=false;
     });
   }

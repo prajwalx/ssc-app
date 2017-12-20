@@ -1,16 +1,75 @@
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
-  <script id="bolt" src="https://sboxcheckout-static.citruspay.com/bolt/run/bolt.min.js" bolt-color="<color-code>"
-  bolt-logo="<image path>">
-  </script>
+<!--<head>
+  <style media="screen">
+  hr.style5 {
+background-color: #fff;
+border-top: 2px dashed #8c8b8b;
+}
+  </style>
 </head>
 <div class="container">
   <div class="row">
-    <div class="col-sm-5 col-md-offset-3">
-      <h1 class="text-center text-primary"style="font-size:50px;font-weight:lighter;">Create Your Account</h1>
+    <div class="col-md-6 col-md-offset-3">
+
+
+    <table class="table table-responsive">
+      <tr>
+        <th>Image</th><th>Title</th><th>Price</th><th>Quantity</th>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="panel panel-default text-center pricePanel">
+            <div class="panel-heading pricePanelHead">
+              <h1>SSC CGL Tier-I</h1>
+            </div>
+            <div class="panel-body">
+              <p><strong>20</strong> Mock Tests</p>
+              <p><strong>200</strong> Marks</p>
+              <p><strong>60</strong> Minutes</p>
+              <p><strong>1</strong> Free Test</p>
+              <!- - <p><strong>Endless</strong> Amet</p> - ->
+            </div>
+            <div class="panel-footer pricePanelFoot">
+              <h3>&#8377;250.00</h3>
+              <!- - <h4>per month</h4> - ->
+              <button class="btn btn-lg">Buy Now</button>
+            </div>
+          </div>
+        </td>
+        <td>
+          <a href="#">LED Spacer Single Pin, 6mm,8.5mm </a><br><br>
+
+        </td>
+        <td>Rs. 45.00</td>
+        <td> 1</td>
+      </tr>
+    </table>
+    <hr class="style5">
+    <div class="panel panel-primary text-right">
+      <div class="panel-heading">
+        <h3 class="panel-title">Subtotal</h3>
+      </div>
+      <div class="panel-body">
+        Rs. 90.00
+      </div>
+      <div class="panel-footer">
+
+      </div>
     </div>
-    <div class="col-sm-5 col-md-offset-3">
-      <form class="form" name="form" ng-submit="vm.register(form)" novalidate>
+
+    </div>
+
+     <div class="col-md-6 col-md-offset-3">
+       <div>
+         <button class="btn btn-primary btn-lg btn-register">
+           Pay Now
+         </button>
+         <br><br>
+
+       </div>
+     </div>
+
+    <!- -  <form class="form" name="form" ng-submit="vm.paynow(form)" novalidate>
 
         <div class="form-group" ng-class="{ 'has-success': form.name.$valid && vm.submitted,
                                             'has-error': form.name.$invalid && vm.submitted }">
@@ -64,48 +123,16 @@
           </p>
         </div>
 
-        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && vm.submitted,
-                                            'has-error': form.password.$invalid && vm.submitted }">
-          <label>Password</label>
-
-          <input type="password" name="password"placeholder="Enter your PassWord" class="form-control" ng-model="vm.user.password"
-                 ng-minlength="3"
-                 required
-                 mongoose-error/>
-          <p class="help-block"
-             ng-show="(form.password.$error.minlength || form.password.$error.required) && vm.submitted">
-            Password must be at least 3 characters.
-          </p>
-          <p class="help-block" ng-show="form.password.$error.mongoose">
-            {{ vm.errors.password }}
-          </p>
-        </div>
-
-        <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && vm.submitted,
-                                            'has-error': form.confirmPassword.$invalid && vm.submitted }">
-          <label>Confirm Password</label>
-          <input type="password" name="confirmPassword"placeholder="Confirm Password" class="form-control" ng-model="vm.user.confirmPassword"
-                 match="vm.user.password"
-                 ng-minlength="3" required/>
-          <p class="help-block"
-             ng-show="form.confirmPassword.$error.match && vm.submitted">
-            Passwords must match.
-          </p>
-        </div>
-
         <div>
           <button class="btn btn-primary btn-lg btn-register" type="submit">
-            Sign up
+            Pay Now
           </button>
           <br><br>
-          <a href="/login">Already Registered? Login</a>
-          <!-- <a class="btn btn-success btn-lg btn-login" href="/login">
-            Login
-          </a> -->
+
         </div>
 
       </form>
+
     </div>
   </div>
-  <hr>
 </div>
