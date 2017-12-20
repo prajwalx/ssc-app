@@ -1,0 +1,76 @@
+<!-- <head>
+  <style media="screen">
+
+
+  </style>
+  <!- - <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> - - >
+</head> -->
+<div class="container">
+
+
+  <div class="row">
+
+    <div class="col-sm-12">
+      <h1 class="text-center text-primary"style="font-size:50px;font-weight:lighter;">Forgot Password</h1>
+    </div>
+
+    <div class="col-sm-5 col-md-offset-3">
+      <div class=""ng-class="{ 'panel panel-info': forgotCtrl.submitted &&forgotCtrl.res.class,
+                                'panel panel-danger':forgotCtrl.submitted && !forgotCtrl.res.class }"
+                                ng-show="forgotCtrl.res">
+      <div class="panel-heading">
+        <h3 class="panel-title"></h3>
+      </div>
+      <div class="panel-body">
+      <p>{{forgotCtrl.res.msg}}</p>
+      </div>
+      <div class="panel-footer">
+
+      </div>
+    </div>
+      <div ng-class="forgotCtrl.class"style="margin-left:40%;font-size:36px;color:black;"></div>
+    </div>
+
+    <div class="col-sm-5 col-md-offset-3">
+
+
+
+      <form class="form" id="SignupForm"name="form" ng-submit="" novalidate>
+
+        <div class="form-group"ng-class="{ 'has-success': form.email.$valid && forgotCtrl.submitted,
+                                            'has-error': form.email.$invalid && forgotCtrl.submitted }" >
+          <label>Email</label>
+
+          <input type="email" name="email" class="form-control"placeholder="Enter your Email" ng-model="forgotCtrl.user.email"
+                 required
+                 mongoose-error/>
+
+                 <p class="help-block" ng-show="form.email.$error.email && forgotCtrl.submitted">
+                   Doesn't look like a valid email.
+                 </p>
+                 <p class="help-block" ng-show="form.email.$error.required && forgotCtrl.submitted">
+                   What's your email address?
+                 </p>
+                 <p class="help-block" ng-show="form.email.$error.mongoose">
+                   {{ forgotCtrl.errors.email }}
+                 </p>
+        </div>
+
+
+        <div>
+
+          <button class="btn btn-primary btn-lg btn-register"ng-disabled="forgotCtrl.disable" type="button"ng-click="forgotCtrl.submit(form)">
+            Reset Password
+          </button>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <br>
+  <hr>
+
+  <br><br><br><br>
+
+</div>

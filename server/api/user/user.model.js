@@ -16,6 +16,8 @@ var UserSchema = new Schema({
     type: String,
     required: true,
   },
+  resetPasswordToken: String,//for forget pwd
+  resetPasswordExpires: Date,//http://sahatyalkabov.com/how-to-implement-password-reset-in-nodejs/
   role: {
     type: String,
     default: 'user'
