@@ -1,0 +1,108 @@
+<head>
+  <script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="sidenavbarAdmin">
+        <a href="/admin"><span class="glyphicon glyphicon-home"></span> Dash Board</a><br>
+        <a href="/admin"><span class="glyphicon glyphicon-user"></span> Users</a><br>
+        <a href="/addquestype"><span class="glyphicon glyphicon-film"></span> Question Type</a><br>
+        <a href="/addquestion"><span class="glyphicon glyphicon-th"></span> Questions</a><br>
+        <a href="/addtest"><span class="glyphicon glyphicon-pencil"></span> Tests</a><br>
+        <a href="/addpack"><span class="glyphicon glyphicon-th-large"></span> Pack</a><br>
+
+      </div>
+    </div>
+    <div class="col-md-9">
+      <h2 class="text-primary">Add Questions</h2>
+      <p>Add <code>Questions</code> here</p>
+      <br>
+      <br>
+      <form class="form" name="form" novalidate>
+
+        <div class="form-group">
+          <label>Question Type</label>
+          <select  class="form-control" name="questionType"ng-model="addquestionCtrl.questionType"
+          ng-options="x for x in addquestionCtrl.questypes" required>
+          </select>
+          <div class="form-group has-error">
+            <p class="help-block" ng-show="form.questionType.$error.required && addquestionCtrl.submitted">
+               Please Select Question Type
+            </p>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label>Question</label>
+          <textarea  placeholder="Type the Question Here" name="Inputquestion" class="form-control"
+           ng-model="addquestionCtrl.Inputquestion" required rows="8" cols="80"></textarea>
+           <br>
+           <label>Output</label>
+           <textarea id="output"name="questionOutput" rows="8" cols="80"></textarea>
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.Inputquestion.$error.required && addquestionCtrl.submitted">
+             Please Enter Question
+          </p>
+        </div>
+<p>When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+  $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</p>
+
+        <div class="form-group">
+          <label>Question Image</label>
+          <input type="url" placeholder="Type the Question Image URL here (Optional)" name="InputquestionURL"
+          class="form-control" ng-model="addquestionCtrl.InputquestionURL">
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.Inputquestion.$error.url && addquestionCtrl.submitted">
+             Please Enter Valid URL
+          </p>
+        </div>
+
+
+        <div class="form-group">
+          <label>A</label>
+          <input type="text" placeholder="Type the Option A" name="Inputquestions" class="form-control" ng-model="addquestionCtrl.Inputquestions" required>
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.Inputquestions.$error.required && addquestionCtrl.submitted">
+             Please Enter Question
+          </p>
+        </div>
+
+
+        <div>
+          <button class="btn btn-primary btn-lg btn-login" ng-show="addquestypeCtrl.create"type="button"ng-click="addquestypeCtrl.Create(form)">
+            Add
+          </button>
+          <button class="btn btn-primary btn-lg btn-login" ng-show="!addquestypeCtrl.create"type="button"ng-click="addquestypeCtrl.Update(form)">
+            Update
+          </button>
+          <br><br>
+        </div>
+
+      </form>
+
+      <!-- Types from DB Table -->
+      <table class="table table-responsive table-bordered">
+        <tr>
+          <th>Question Type</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        <tr ng-repeat="type in addquestypeCtrl.questypes">
+          <td>{{type.Qtype}}</td>
+          <td><a href="#"ng-click="addquestypeCtrl.loadForUpdate(type)"><span class="glyphicon glyphicon-pencil text-primary"></span></a></td>
+          <td><a href="#" ng-click="addquestypeCtrl.Delete(type)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
+
+        </tr>
+      </table>
+
+    </div>
+
+    </div>
+  </div>
