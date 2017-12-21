@@ -43,7 +43,7 @@ class SignupController {
     }
   }
 
-  //Payments are here
+  //Payments are here TODO:Verify Response Hash Bhati Enterprises after payu issue settled
   paynow(){
 
     //hashSequence for Payment Request

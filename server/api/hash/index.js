@@ -19,11 +19,11 @@ router.post('/',function(req,res) {
   var key='xcBWWs3T';
   var salt='HYfr24pBbF';
   var tid="BE"+(new Date().toUTCString());
-  var amount=250;
+  var amount=250;//to get from packid
   var name=req.body.name;
   var email=req.body.email;
   var phone=req.body.phone;
-  var productinfo='SSC CGL Tier 1 Pack';
+  var productinfo='SSC CGL Tier 1 Pack';//to get from packid
   var prehsh= key + '|' + tid + '|' + amount + '|' + productinfo + '|' +name + '|'
               + email  +'|||||'+'||||||'+salt;
 
@@ -51,6 +51,7 @@ router.post('/',function(req,res) {
 
 
 });
+//TODO;modify it after payu issue settled
 router.get('/verify/:obj',function(req,res){
   // console.log(req.params.obj);
   var s='1';
