@@ -43,8 +43,8 @@ class AddquestionComponent {
     this.$http.get('/api/questions')
     .then(response=>{
       this.Questions=response.data;
-      this.socket.syncUpdates('question', this.Questions);
-    })
+      this.socket.syncUpdates('question', this.Questions);            
+    });
   }
 
   Create(form){

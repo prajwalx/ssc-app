@@ -10,6 +10,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
         <a href="/admin"><span class="glyphicon glyphicon-user"></span> Users</a><br>
         <a href="/addquestype"><span class="glyphicon glyphicon-film"></span> Question Type</a><br>
         <a href="/addquestion"><span class="glyphicon glyphicon-th"></span> Questions</a><br>
+        <a href="/addtesttype"><span class="glyphicon glyphicon-briefcase"></span> Test Type</a><br>
         <a href="/addtest"><span class="glyphicon glyphicon-pencil"></span> Tests</a><br>
         <a href="/addpack"><span class="glyphicon glyphicon-th-large"></span> Pack</a><br>
 
@@ -202,9 +203,13 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
       </form>
 
       <!-- Types from DB Table -->
-      <div class=""style="overflow-x:scroll">
-
+      <div id="LoadMath"style="overflow-x:scroll">
+        <br><br><hr>
+        <center><button type="button" class="btn btn-success"onclick="LoadMathDB()">
+          Reload Maths
+        </button></center>
       <table class="table table-responsive table-bordered">
+
         <tr>
           <th>Question</th>
           <th>Question Type</th>
@@ -259,8 +264,15 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
   </div>
 
   <script type="text/javascript">
-    function LoadOutput(from,to){
+  $(document).ready(function(){
+  });
+  function LoadMathDB(){
+    console.log('LoadMathDB');
+    var x=document.getElementById('#LoadMath');
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub,x]);
+  }
 
+    function LoadOutput(from,to){
       var y=document.getElementById(from).value;
       document.getElementById(to).innerHTML=y;
       var x=document.getElementById(to);

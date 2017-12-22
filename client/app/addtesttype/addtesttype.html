@@ -18,30 +18,30 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
     </div>
     <div class="col-md-9">
 
-        <h2 class="text-primary">Add Question Type</h2>
-        <p>Add <code>Question Type</code> here</p>
+        <h2 class="text-primary">Add Test Type</h2>
+        <p>Add <code>Test Type</code> here</p>
         <br>
         <br>
         <form class="form" name="form" novalidate>
 
           <div class="form-group">
-            <label>Question Type</label>
+            <label>Test Type</label>
 
-            <input type="text" name="Inputquestype" class="form-control" ng-model="addquestypeCtrl.Inputquestype" required>
+            <input type="text" name="InputTesttype" class="form-control" ng-model="addtesttypeCtrl.InputTesttype" required>
           </div>
 
           <div class="form-group has-error">
-            <p class="help-block" ng-show="form.Inputquestype.$error.required && addquestypeCtrl.submitted">
-               Please Enter Question Type
+            <p class="help-block" ng-show="form.InputTesttype.$error.required && addtesttypeCtrl.submitted">
+               Please Enter Test Type
             </p>
           </div>
 
 
           <div>
-            <button class="btn btn-primary btn-lg btn-login" ng-show="addquestypeCtrl.create"type="button"ng-click="addquestypeCtrl.Create(form)">
+            <button class="btn btn-primary btn-lg btn-login" ng-show="addtesttypeCtrl.create"type="button"ng-click="addtesttypeCtrl.Create(form)">
               Add
             </button>
-            <button class="btn btn-primary btn-lg btn-login" ng-show="!addquestypeCtrl.create"type="button"ng-click="addquestypeCtrl.Update(form)">
+            <button class="btn btn-primary btn-lg btn-login" ng-show="!addtesttypeCtrl.create"type="button"ng-click="addtesttypeCtrl.Update(form)">
               Update
             </button>
             <br><br>
@@ -52,14 +52,14 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
         <!-- Types from DB Table -->
         <table class="table table-responsive table-bordered">
           <tr>
-            <th>Question Type</th>
+            <th>Test Type</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
-          <tr ng-repeat="type in addquestypeCtrl.questypes">
-            <td>{{type.Qtype}}</td>
-            <td><a href="#"ng-click="addquestypeCtrl.loadForUpdate(type)"><span class="glyphicon glyphicon-pencil text-primary"></span></a></td>
-            <td><a href="#" ng-click="addquestypeCtrl.Delete(type)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
+          <tr ng-repeat="type in addtesttypeCtrl.testtypes">
+            <td>{{type.Ttype}}</td>
+            <td><a href="#"ng-click="addtesttypeCtrl.loadForUpdate(type)"><span class="glyphicon glyphicon-pencil text-primary"></span></a></td>
+            <td><a href="#" ng-click="addtesttypeCtrl.Delete(type)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
 
           </tr>
         </table>
@@ -67,8 +67,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
     </div>
   </div>
 
-  <!-- <p>When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
-    $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</p> -->
+
 
 </div>
 <script type="text/javascript" async
