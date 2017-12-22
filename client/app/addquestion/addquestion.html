@@ -1,8 +1,7 @@
-<head>
-  <script type="text/javascript" async
- src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+<!-- Latex Script MathJax -->
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-</head>
 <div class="container">
   <div class="row">
     <div class="col-md-2">
@@ -38,48 +37,163 @@
 
         <div class="form-group">
           <label>Question</label>
-          <textarea  placeholder="Type the Question Here" name="Inputquestion" class="form-control"
+          <textarea  placeholder="Type the Question Here" name="Inputquestion" class="form-control"id="Ques"
            ng-model="addquestionCtrl.Inputquestion" required rows="8" cols="80"></textarea>
            <br>
-           <label>Output</label>
-           <textarea id="output"name="questionOutput" rows="8" cols="80"></textarea>
+           <button type="button" class="btn btn-info"onclick="LoadOutput('Ques','OutQues')">
+            Display
+          </button><br>
+           <!-- <label>Output</label><br> -->
+           <p id="OutQues"></p>
         </div>
         <div class="form-group has-error">
           <p class="help-block" ng-show="form.Inputquestion.$error.required && addquestionCtrl.submitted">
              Please Enter Question
           </p>
         </div>
-<p>When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
-  $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</p>
+<!-- <p>When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+  $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</p> -->
 
         <div class="form-group">
-          <label>Question Image</label>
+          <label>Question Image URL</label>
           <input type="url" placeholder="Type the Question Image URL here (Optional)" name="InputquestionURL"
-          class="form-control" ng-model="addquestionCtrl.InputquestionURL">
+          class="form-control" ng-model="addquestionCtrl.InputquestionURL"ng-init="addquestionCtrl.InputquestionURL=''">
         </div>
         <div class="form-group has-error">
-          <p class="help-block" ng-show="form.Inputquestion.$error.url && addquestionCtrl.submitted">
+          <p class="help-block" ng-show="form.InputquestionURL.$error.url && addquestionCtrl.submitted">
              Please Enter Valid URL
           </p>
         </div>
 
 
         <div class="form-group">
-          <label>A</label>
-          <input type="text" placeholder="Type the Option A" name="Inputquestions" class="form-control" ng-model="addquestionCtrl.Inputquestions" required>
+          <label>Option A</label>
+          <textarea type="text"id="A" placeholder="Type the Option A"
+          name="OptionA" class="form-control" ng-model="addquestionCtrl.OptionA" required
+          rows="4" cols="80"></textarea>
+          <br>
+          <p style="font-size:17px;padding-left:10px;"id="OA"></p>
+          <button type="button" class="btn btn-info"onclick="LoadOutput('A','OA')">
+           Display
+         </button><br>
         </div>
         <div class="form-group has-error">
-          <p class="help-block" ng-show="form.Inputquestions.$error.required && addquestionCtrl.submitted">
-             Please Enter Question
+          <p class="help-block" ng-show="form.OptionA.$error.required && addquestionCtrl.submitted">
+             Please Enter Option A
           </p>
         </div>
 
+        <div class="form-group">
+          <label>Option B</label>
+          <textarea type="text"id="B" placeholder="Type the Option B"
+          name="OptionB" class="form-control" ng-model="addquestionCtrl.OptionB" required
+          rows="4" cols="80"></textarea>
+          <br>
+          <p style="font-size:17px;padding-left:10px;"id="OB"></p>
+          <button type="button" class="btn btn-info"onclick="LoadOutput('B','OB')">
+           Display
+         </button><br>
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.OptionB.$error.required && addquestionCtrl.submitted">
+             Please Enter Option B
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Option C</label>
+          <textarea type="text"id="C" placeholder="Type the Option C"
+           name="OptionC" class="form-control" ng-model="addquestionCtrl.OptionC" required
+           rows="4" cols="80"></textarea>
+          <br>
+          <p style="font-size:17px;padding-left:10px;"id="OC"></p>
+          <button type="button" class="btn btn-info"onclick="LoadOutput('C','OC')">
+           Display
+         </button><br>
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.OptionC.$error.required && addquestionCtrl.submitted">
+             Please Enter Option C
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Option D</label>
+          <textarea type="text"id="D" placeholder="Type the Option D"
+           name="OptionD" class="form-control" ng-model="addquestionCtrl.OptionD" required
+           rows="4" cols="80"></textarea>
+          <br>
+          <p style="font-size:17px;padding-left:10px;"id="OD"></p>
+          <button type="button" class="btn btn-info"onclick="LoadOutput('D','OD')">
+           Display
+         </button><br>
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.OptionD.$error.required && addquestionCtrl.submitted">
+             Please Enter Option D
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Answer</label><br>
+          <label class="radio-inline">
+            <input type="radio" name="optradio"ng-model="addquestionCtrl.Ans"value="1"required>Option A
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="optradio"ng-model="addquestionCtrl.Ans"value="2"required>Option B
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="optradio"ng-model="addquestionCtrl.Ans"value="3"required>Option C
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="optradio"ng-model="addquestionCtrl.Ans"value="4"required>Option D
+          </label>
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.optradio.$error.required && addquestionCtrl.submitted">
+             Please Select An Answer
+          </p>
+        </div>
+        <br><br>
+
+
+        <div class="form-group">
+          <label>Solution</label>
+          <textarea  placeholder="Type the Solution Here" name="Solution" class="form-control"id="Sol"
+           ng-model="addquestionCtrl.Solution" required rows="8" cols="80" required></textarea>
+           <br>
+           <button type="button" class="btn btn-info"onclick="LoadOutput('Sol','OutSol')">
+            Display
+          </button><br>
+           <!-- <label>Output</label><br> -->
+           <p id="OutSol"></p>
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.Solution.$error.required && addquestionCtrl.submitted">
+             Please Enter Solution
+          </p>
+        </div>
+<!-- <p>When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+  $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</p> -->
+
+        <div class="form-group">
+          <label>Solution Image URL</label>
+          <input type="url" placeholder="Type the Solution Image URL here (Optional)" name="SolutionURL"
+          class="form-control" ng-model="addquestionCtrl.SolutionURL"ng-init="addquestionCtrl.SolutionURL=''">
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.SolutionURL.$error.url && addquestionCtrl.submitted">
+             Please Enter Valid URL
+          </p>
+        </div>
+        <br><br>
+
 
         <div>
-          <button class="btn btn-primary btn-lg btn-login" ng-show="addquestypeCtrl.create"type="button"ng-click="addquestypeCtrl.Create(form)">
+          <button class="btn btn-primary btn-lg btn-login" ng-show="addquestionCtrl.create"type="button"ng-click="addquestionCtrl.Create(form)">
             Add
           </button>
-          <button class="btn btn-primary btn-lg btn-login" ng-show="!addquestypeCtrl.create"type="button"ng-click="addquestypeCtrl.Update(form)">
+          <button class="btn btn-primary btn-lg btn-login" ng-show="!addquestionCtrl.create"type="button"ng-click="addquestionCtrl.Update(form)">
             Update
           </button>
           <br><br>
@@ -88,21 +202,68 @@
       </form>
 
       <!-- Types from DB Table -->
+      <div class=""style="overflow-x:scroll">
+
       <table class="table table-responsive table-bordered">
         <tr>
+          <th>Question</th>
           <th>Question Type</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          <th>Ques Image</th>
+          <th>Options</th>
+          <th>Ans</th>
+          <th>Solution</th>
+          <th>Solution Image</th>
         </tr>
-        <tr ng-repeat="type in addquestypeCtrl.questypes">
-          <td>{{type.Qtype}}</td>
-          <td><a href="#"ng-click="addquestypeCtrl.loadForUpdate(type)"><span class="glyphicon glyphicon-pencil text-primary"></span></a></td>
-          <td><a href="#" ng-click="addquestypeCtrl.Delete(type)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
+        <tr ng-repeat="question in addquestionCtrl.Questions">
+          <td>{{question.question}}
+            <br><br><br>
+            <button type="button" class="btn btn-primary"
+            ng-click="addquestionCtrl.loadForUpdate(question)">
+              <span class="glyphicon glyphicon-pencil "></span></button>
+            <br><br>
+            <button type="button" class="btn btn-danger"
+             ng-click="addquestionCtrl.Delete(question)">
+              <span class="glyphicon glyphicon-trash "></span>
+            </button>
+          </td>
+          <td>{{question.questype}}</td>
+          <td>
+            <div ng-show="{{question.quesImg!==''}}"class=""style="height:250px;width:350px;overflow:hidden">
+              <img src=""ng-src="{{question.quesImg}}"width="100%"height="100%" alt="No Img">
+            </div>
+          </td>
+          <td>
+            <ul>
+              <li>{{question.a}}</li>
+              <li>{{question.b}}</li>
+              <li>{{question.c}}</li>
+              <li>{{question.d}}</li>
+            </ul>
+          </td>
+          <td>{{question.ans}}</td>
+          <td>{{question.solution}}</td>
+          <td>
+            <div ng-show="{{question.solutionImg!==''}}"class=""style="height:250px;width:250px;overflow:hidden">
+              <img src=""ng-src="{{question.solutionImg}}"width="100%"height="100%" alt="No Img">
+            </div>
+          </td>
+
 
         </tr>
       </table>
+      </div>
 
     </div>
 
     </div>
   </div>
+
+  <script type="text/javascript">
+    function LoadOutput(from,to){
+
+      var y=document.getElementById(from).value;
+      document.getElementById(to).innerHTML=y;
+      var x=document.getElementById(to);
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,x]);
+    }
+  </script>
