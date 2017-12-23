@@ -11,8 +11,11 @@
 (function(){
 
 class AddtestComponent {
-  constructor() {
+  constructor($http,socket,$scope) {
     this.message = 'Hello';
+    this.$http=$http;
+    this.socket=socket;
+    this.$scope=$scope;    
   }
 }
 

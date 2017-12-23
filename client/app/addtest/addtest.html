@@ -20,6 +20,17 @@
       <form class="form" name="form" novalidate>
 
         <div class="form-group">
+          <label>Test Name</label>
+          <input type="text" name="InputTestName" class="form-control" ng-model="addtestCtrl.InputTestName"
+          placeholder="SSC CGL TIER 1 Mock Test" required>
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.InputTestName.$error.required && addtestCtrl.submitted">
+             Please Enter Test Name
+          </p>
+        </div>
+
+        <div class="form-group">
           <label>Test Type</label>
           <select  class="form-control" name="testType"ng-model="addtestCtrl.testType"
           ng-options="x for x in addtestCtrl.questypes" required>

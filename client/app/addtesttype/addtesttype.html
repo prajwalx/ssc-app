@@ -26,13 +26,79 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
 
           <div class="form-group">
             <label>Test Type</label>
-
             <input type="text" name="InputTesttype" class="form-control" ng-model="addtesttypeCtrl.InputTesttype" required>
           </div>
-
           <div class="form-group has-error">
             <p class="help-block" ng-show="form.InputTesttype.$error.required && addtesttypeCtrl.submitted">
                Please Enter Test Type
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label>Maximum Marks</label>
+            <input type="number" name="InputTesttypeMarks" class="form-control" ng-model="addtesttypeCtrl.InputTesttypeMarks" required>
+          </div>
+          <div class="form-group has-error">
+            <p class="help-block" ng-show="form.InputTesttypeMarks.$error.required && addtesttypeCtrl.submitted">
+               Please Enter Test Marks
+            </p>
+            <p class="help-block" ng-show="form.InputTesttypeMarks.$error.number && addtesttypeCtrl.submitted">
+               Please Enter Test Marks in Numbers(200)
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label>Number Of Questions</label>
+            <input type="number" name="NoOfQuestion" class="form-control" ng-model="addtesttypeCtrl.NoOfQuestion" required>
+          </div>
+          <div class="form-group has-error">
+            <p class="help-block" ng-show="form.NoOfQuestion.$error.required && addtesttypeCtrl.submitted">
+               Please Enter No Of Question
+            </p>
+            <p class="help-block" ng-show="form.NoOfQuestion.$error.number && addtesttypeCtrl.submitted">
+               Please Enter No Of Question in Numbers(100)
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label>Duration</label>
+            <input type="number"placeholder="Enter Duration in minutes:60,75,120 etc" name="Duration"
+            class="form-control" ng-model="addtesttypeCtrl.Duration" required>
+          </div>
+          <div class="form-group has-error">
+            <p class="help-block" ng-show="form.Duration.$error.required && addtesttypeCtrl.submitted">
+               Please Enter Test Duration
+            </p>
+            <p class="help-block" ng-show="form.Duration.$error.number && addtesttypeCtrl.submitted">
+               Please Enter Test Duration in Numbers(60,75,120 etc)
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label>Marks For Correct Response</label>
+            <input type="number"placeholder="Enter Marks of correct response:1,2, etc" name="PositiveMarks"
+            class="form-control" ng-model="addtesttypeCtrl.PositiveMarks" required>
+          </div>
+          <div class="form-group has-error">
+            <p class="help-block" ng-show="form.PositiveMarks.$error.required && addtesttypeCtrl.submitted">
+               Please Enter Test Marks for correct Response
+            </p>
+            <p class="help-block" ng-show="form.PositiveMarks.$error.number && addtesttypeCtrl.submitted">
+               Please Enter Test Marks in Numbers(1,2 etc)
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label>Negative Marks For Wrong Response</label>
+            <input type="number"placeholder="Enter | Marks | of Incorrect response:1,0.25, etc" name="NegativeMarks"
+            class="form-control" ng-model="addtesttypeCtrl.NegativeMarks" required>
+          </div>
+          <div class="form-group has-error">
+            <p class="help-block" ng-show="form.NegativeMarks.$error.required && addtesttypeCtrl.submitted">
+               Please Enter Test Marks for Incorrect Response
+            </p>
+            <p class="help-block" ng-show="form.NegativeMarks.$error.number && addtesttypeCtrl.submitted">
+               Please Enter Test Marks in Numbers(1,0.25 etc)
             </p>
           </div>
 
@@ -76,6 +142,11 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
           <tr>
             <th>Test Type</th>
             <th>Question Types</th>
+            <th>MaxMarks</th>
+            <th>Duration</th>
+            <th>No.Questions</th>
+            <th>PositiveMark</th>
+            <th>NegativeMark</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -86,6 +157,11 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
                 <li>{{y}}</li>
               </ul>
             </td>
+            <td>{{type.Maxmarks}}</td>
+            <td>{{type.Duration}}</td>
+            <td>{{type.NoOfQu}}</td>
+            <td>{{type.PositiveMark}}</td>
+            <td>{{type.NegativeMark}}</td>
             <td><a href="#"ng-click="addtesttypeCtrl.loadForUpdate(type)"><span class="glyphicon glyphicon-pencil text-primary"></span></a></td>
             <td><a href="#" ng-click="addtesttypeCtrl.Delete(type)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
 

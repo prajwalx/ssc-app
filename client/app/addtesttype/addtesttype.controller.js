@@ -23,16 +23,22 @@ class AddtesttypeComponent{
     this.typeId;//for Updating
     this.allQuestypesOriginalCopy=[];
 
-    $scope.$on('$destroy', function() {
-      socket.unsyncUpdates('testtype');
-    });
+    //Socket Not Showing Synced Qtypes JSON String to Array
+    // $scope.$on('$destroy', function() {
+    //   socket.unsyncUpdates('testtype');
+    // });
   }
   $onInit(){
     this.$http.get('/api/testtypes')
-
     .then(response=>{
-      this.testtypes=response.data;
-      this.socket.syncUpdates('testtype', this.testtypes);
+      var arr=response.data;
+      //JSON Parse qTypes array then store to response to testtypes for ng-repeat,table below
+      var i;
+      for(i=0;i<arr.length;i++){
+        arr[i].Qtypes=JSON.parse(arr[i].Qtypes);
+      }
+      this.testtypes=arr;
+      //this.socket.syncUpdates('testtype', this.testtypes);
     });
 
     this.$http.get('/api/questypes')
@@ -42,9 +48,8 @@ class AddtesttypeComponent{
       typearr.forEach( function (arrayItem)//Extracting only Qtypes from entire Object
         {
           arr.push(arrayItem.Qtype);
-          //alert(x);
       });
-      this.questypes=arr;
+      this.questypes=arr;//this.questypes Now Only contains array of string of Question Types , not array of Object s
       //Basically, the slice() operation clones the array and returns the reference to the new array. Also note that:
       this.allQuestypesOriginalCopy=this.questypes.slice();
     });
@@ -55,15 +60,26 @@ class AddtesttypeComponent{
       console.log(this.selectedQuesTypes);
       this.$http.post('/api/testtypes',{
         Ttype:this.InputTesttype,
-        Qtypes:this.selectedQuesTypes
+        Maxmarks:this.InputTesttypeMarks,
+        NoOfQu:this.NoOfQuestion,
+        Duration:this.Duration,
+        PositiveMark:this.PositiveMarks,
+        NegativeMark:this.NegativeMarks,
+        Qtypes:angular.toJson(this.selectedQuesTypes)
       })
       .then(response=>{
         this.InputTesttype='';//Empty the form
+        this.InputTesttypeMarks=null;
+        this.NoOfQuestion=null;
+        this.Duration=null;
+        this.PositiveMarks=null;
+        this.NegativeMarks=null;
         this.selectedQuesTypes=[];
         this.questypes=[];
         //Basically, the slice() operation clones the array and returns the reference to the new array. Also note that:
         this.questypes=this.allQuestypesOriginalCopy.slice();
         this.submitted=false;
+        location.href='/addtesttype';//Since Socket is Working but not Syncing JSON string array in ng-repeat,We Reload The Page
       });
 
     }
@@ -71,6 +87,12 @@ class AddtesttypeComponent{
 
   loadForUpdate(type){
     this.InputTesttype=type.Ttype;
+    this.InputTesttypeMarks=type.Maxmarks;
+    this.NoOfQuestion=type.NoOfQu;
+    this.Duration=type.Duration;
+    this.PositiveMarks=type.PositiveMark;
+    this.NegativeMarks=type.NegativeMark;
+
     this.selectedQuesTypes=[];
     this.questypes=[];
     //Basically, the slice() operation clones the array and returns the reference to the new array. Also note that:
@@ -84,14 +106,26 @@ class AddtesttypeComponent{
 
   Update(form){
     this.submitted=true;
+    console.log(this.selectedQuesTypes);
     if(form.$valid&&this.selectedQuesTypes.length){
 
       this.$http.put('/api/testtypes/'+this.typeId,{
         Ttype:this.InputTesttype,
-        Qtypes:this.selectedQuesTypes
+        Maxmarks:this.InputTesttypeMarks,
+        NoOfQu:this.NoOfQuestion,
+        Duration:this.Duration,
+        PositiveMark:this.PositiveMarks,
+        NegativeMark:this.NegativeMarks,
+        Qtypes:angular.toJson(this.selectedQuesTypes)
       })
       .then(response=>{
         this.InputTesttype='';//Empty the form
+        this.InputTesttypeMarks=null;
+        this.NoOfQuestion=null;
+        this.Duration=null;
+        this.PositiveMarks=null;
+        this.NegativeMarks=null;
+
         this.selectedQuesTypes=[];
         this.questypes=[];
         //Basically, the slice() operation clones the array and returns the reference to the new array. Also note that:
@@ -99,6 +133,7 @@ class AddtesttypeComponent{
 
         this.submitted=false;
         this.create=true;//Set Page to Default
+        location.href='/addtesttype';
       });
 
     }
@@ -108,7 +143,11 @@ class AddtesttypeComponent{
   Delete(type){
     var x=confirm('Are you Sure you want to delete this Test Type ?');
     if(x){
-      this.$http.delete('/api/testtypes/'+type._id);
+      this.$http.delete('/api/testtypes/'+type._id)
+      .then(response=>{
+        location.href='/addtesttype';
+      });
+
     }
   }
 
