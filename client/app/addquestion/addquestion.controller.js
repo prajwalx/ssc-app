@@ -43,7 +43,7 @@ class AddquestionComponent {
     this.$http.get('/api/questions')
     .then(response=>{
       this.Questions=response.data;
-      this.socket.syncUpdates('question', this.Questions);            
+      this.socket.syncUpdates('question', this.Questions);
     });
   }
 
@@ -60,6 +60,10 @@ class AddquestionComponent {
         b:this.OptionB,//2
         c:this.OptionC,//3
         d:this.OptionD,//4
+        aURL:this.OptionAURL,
+        bURL:this.OptionBURL,
+        cURL:this.OptionCURL,
+        dURL:this.OptionDURL,
         ans:this.Ans,//1,2,3,4
         solution:this.Solution,//URL
         solutionImg:this.SolutionURL
@@ -73,6 +77,10 @@ class AddquestionComponent {
         this.OptionB='';
         this.OptionC='';
         this.OptionD='';
+        this.OptionAURL='';
+        this.OptionBURL='';
+        this.OptionCURL='';
+        this.OptionDURL='';
         this.Ans='';
         this.Solution='';
         this.SolutionURL='';
@@ -89,6 +97,10 @@ class AddquestionComponent {
     this.OptionB=question.b;
     this.OptionC=question.c;
     this.OptionD=question.d;
+    this.OptionAURL=question.aURL;
+    this.OptionBURL=question.bURL;
+    this.OptionCURL=question.cURL;
+    this.OptionDURL=question.dURL;
     this.Ans=question.ans;
     this.Solution=question.solution
     this.SolutionURL=question.solutionImg
@@ -108,6 +120,10 @@ class AddquestionComponent {
         b:this.OptionB,//2
         c:this.OptionC,//3
         d:this.OptionD,//4
+        aURL:this.OptionAURL,
+        bURL:this.OptionBURL,
+        cURL:this.OptionCURL,
+        dURL:this.OptionDURL,
         ans:this.Ans,//1,2,3,4
         solution:this.Solution,//URL
         solutionImg:this.SolutionURL
@@ -121,6 +137,10 @@ class AddquestionComponent {
         this.OptionB='';
         this.OptionC='';
         this.OptionD='';
+        this.OptionAURL='';
+        this.OptionBURL='';
+        this.OptionCURL='';
+        this.OptionDURL='';
         this.Ans='';
         this.Solution='';
         this.SolutionURL='';

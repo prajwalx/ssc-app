@@ -13,9 +13,21 @@ var QuestionSchema = new mongoose.Schema({
   c:String,//3
   d:String,//4
   ans:Number,//1,2,3,4
-  solutionImg:{
+  aURL:{
     type:String,
     default:''},//URL Amazon S3 CDN
+  bURL:{
+    type:String,
+    default:''},//URL Amazon S3 CDN
+  cURL:{
+    type:String,
+    default:''},//URL Amazon S3 CDN
+  dURL:{
+    type:String,
+    default:''},//URL Amazon S3 CDN
+  solutionImg:{
+    type:String,
+    default:''},//URL Amazon S3 CDN    
   solution:String
 });
 

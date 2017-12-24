@@ -84,6 +84,19 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
           </p>
         </div>
 
+        <!-- Image Option A  -->
+        <div class="form-group">
+          <label>Option A Image URL</label>
+          <input type="url" placeholder="(Optional) CDN" name="OptionAURL"
+          class="form-control" ng-model="addquestionCtrl.OptionAURL"ng-init="addquestionCtrl.OptionAURL=''">
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.OptionAURL.$error.url && addquestionCtrl.submitted">
+             Please Enter Valid URL
+          </p>
+        </div>
+        <!-- Image Option A Ends -->
+
         <div class="form-group">
           <label>Option B</label>
           <textarea type="text"id="B" placeholder="Type the Option B"
@@ -100,6 +113,19 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
              Please Enter Option B
           </p>
         </div>
+
+        <!-- Image Option B  -->
+        <div class="form-group">
+          <label>Option B Image URL</label>
+          <input type="url" placeholder="(Optional) CDN" name="OptionBURL"
+          class="form-control" ng-model="addquestionCtrl.OptionBURL"ng-init="addquestionCtrl.OptionBURL=''">
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.OptionBURL.$error.url && addquestionCtrl.submitted">
+             Please Enter Valid URL
+          </p>
+        </div>
+        <!-- Image Option A Ends -->
 
         <div class="form-group">
           <label>Option C</label>
@@ -118,6 +144,19 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
           </p>
         </div>
 
+        <!-- Image Option C  -->
+        <div class="form-group">
+          <label>Option C Image URL</label>
+          <input type="url" placeholder="(Optional) CDN" name="OptionCURL"
+          class="form-control" ng-model="addquestionCtrl.OptionCURL"ng-init="addquestionCtrl.OptionCURL=''">
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.OptionCURL.$error.url && addquestionCtrl.submitted">
+             Please Enter Valid URL
+          </p>
+        </div>
+        <!-- Image Option A Ends -->
+
         <div class="form-group">
           <label>Option D</label>
           <textarea type="text"id="D" placeholder="Type the Option D"
@@ -134,6 +173,19 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
              Please Enter Option D
           </p>
         </div>
+
+        <!-- Image Option D  -->
+        <div class="form-group">
+          <label>Option D Image URL</label>
+          <input type="url" placeholder="(Optional) CDN" name="OptionDURL"
+          class="form-control" ng-model="addquestionCtrl.OptionDURL"ng-init="addquestionCtrl.OptionDURL=''">
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.OptionDURL.$error.url && addquestionCtrl.submitted">
+             Please Enter Valid URL
+          </p>
+        </div>
+        <!-- Image Option A Ends -->
 
         <div class="form-group">
           <label>Answer</label><br>
@@ -205,6 +257,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
       <!-- Types from DB Table -->
       <div id="LoadMath"style="overflow-x:scroll">
         <br><br><hr>
+        <input type="text"class="form-control" name="Search" placeholder="Search Questions Here"ng-model="addquestionCtrl.Search">
+        <br><br><br>
         <center><button type="button" class="btn btn-success"onclick="LoadMathDB()">
           Reload Maths
         </button></center>
@@ -219,7 +273,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
           <th>Solution</th>
           <th>Solution Image</th>
         </tr>
-        <tr ng-repeat="question in addquestionCtrl.Questions">
+        <tr ng-repeat="question in addquestionCtrl.Questions|filter:addquestionCtrl.Search">
           <td>{{question.question}}
             <br><br><br>
             <button type="button" class="btn btn-primary"
@@ -239,10 +293,26 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
           </td>
           <td>
             <ul>
-              <li>{{question.a}}</li>
-              <li>{{question.b}}</li>
-              <li>{{question.c}}</li>
-              <li>{{question.d}}</li>
+              <li>{{question.a}}
+                <div ng-show="{{question.aURL!==''}}"class="">
+                <br><a ng-href="{{question.aURL}}"target="_blank">Option A Image</a>
+                </div>
+              </li>
+              <li>{{question.b}}
+                <div ng-show="{{question.bURL!==''}}"class="">
+                <br><a ng-href="{{question.bURL}}"target="_blank">Option B Image</a>
+                </div>
+              </li>
+              <li>{{question.c}}
+                <div ng-show="{{question.cURL!==''}}"class="">
+                <br><a ng-href="{{question.cURL}}"target="_blank">Option C Image</a>
+                </div>
+              </li>
+              <li>{{question.d}}
+                <div ng-show="{{question.dURL!==''}}"class="">
+                <br><a ng-href="{{question.dURL}}"target="_blank">Option D Image</a>
+                </div>
+              </li>
             </ul>
           </td>
           <td>{{question.ans}}</td>
