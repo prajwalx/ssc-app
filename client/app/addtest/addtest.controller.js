@@ -40,6 +40,39 @@ class AddtestComponent {
       });
   }
 
+
+  /*
+  toggleQ from all questypes to electedQuesTypes and vice-versa
+  */
+  toggleQ(x){
+    console.log(x);
+    if(this.allquestions.indexOf(x)!==-1){
+      this.myquestions.push(x);//add to myquestions
+      this.allquestions.splice(this.allquestions.indexOf(x),1);//pop from total allquestions
+    }
+    else{
+      this.allquestions.push(x);//add to all questypes
+      this.myquestions.splice(this.myquestions.indexOf(x),1);//pop from myquestions
+    }
+  }
+
+  /*
+  ReSet myquestions and allquestions if ng-change on select 
+  */
+  Reload(){
+
+    var tempAll=this.allquestions;
+    var tempMy=this.myquestions;
+    for(var x in tempMy){
+      tempAll.push(tempMy[x]);
+    }
+    tempMy.length=0;
+    this.myquestions.length=0;
+    this.allquestions=tempAll;
+    console.log(tempAll);
+    console.log(tempMy);
+  }
+
 }//End Class
 
 
