@@ -32,8 +32,8 @@
 
         <div class="form-group">
           <label>Test Type</label>
-          <select  class="form-control" name="testType"ng-model="addtestCtrl.testType"
-          ng-options="x for x in addtestCtrl.questypes" required>
+          <select  class="form-control" name="testType"ng-model="addtestCtrl.SelectedTestType"
+          ng-options="x.Ttype for x in addtestCtrl.testTypes" required>
           </select>
           <div class="form-group has-error">
             <p class="help-block" ng-show="form.testType.$error.required && addtestCtrl.submitted">
@@ -42,14 +42,88 @@
           </div>
         </div>
 
+        <div class="">
+          <ul class="nav nav-pills pull-left"style="border:solid 4px whitesmoke"
+          ng-repeat="x in addtestCtrl.SelectedTestType.Qtypes">
+            <li ng-class="{ 'active':addtestCtrl.SelectedQTypeDOM===x}">
+              <a ng-click="addtestCtrl.SelectedQTypeDOM=x"href="#">{{x}}</a></li>
+          </ul>
+        </div>
+
+
+
       </form>
+
+      <hr><hr>
+      <!-- All Questions DB -->
+      <br><br><br>
+      <h3>All Questions</h3><br>
+      <input type="text"class="form-control" name="Search" placeholder="Search Question Here"ng-model="addtestCtrl.Search">
+      <div id="LoadMath"style="overflow-x:scroll">
+        <br><br><hr>
+        <center><button type="button" class="btn btn-success"onclick="LoadMathDB()">
+          Reload Maths
+        </button></center>
+      <table class="table table-responsive table-bordered">
+
+        <tr>
+          <th>Question</th>
+          <th>Question Type</th>
+          <th>Ques Image</th>
+          <th>Options</th>
+          <th>Ans</th>
+          <th>Solution</th>
+          <th>Solution Image</th>
+        </tr>
+        <tr ng-repeat="question in addtestCtrl.allquestions | filter:{questype:addtestCtrl.SelectedQTypeDOM}|filter:addtestCtrl.Search">
+          <td>{{question.question}}
+            <br><br><br>
+            <button type="button" class="btn btn-primary"
+            ng-click="">
+              <span class="glyphicon glyphicon-pencil "></span></button>
+            <br><br>
+            <button type="button" class="btn btn-danger"
+             ng-click="">
+              <span class="glyphicon glyphicon-trash "></span>
+            </button>
+          </td>
+          <td>{{question.questype}}</td>
+          <td>
+            <div ng-show="{{question.quesImg!==''}}"class=""style="height:250px;width:350px;overflow:hidden">
+              <img src=""ng-src="{{question.quesImg}}"width="100%"height="100%" alt="No Img">
+            </div>
+          </td>
+          <td>
+            <ul>
+              <li>{{question.a}}</li>
+              <li>{{question.b}}</li>
+              <li>{{question.c}}</li>
+              <li>{{question.d}}</li>
+            </ul>
+          </td>
+          <td>{{question.ans}}</td>
+          <td>{{question.solution}}</td>
+          <td>
+            <div ng-show="{{question.solutionImg!==''}}"class=""style="height:250px;width:250px;overflow:hidden">
+              <img src=""ng-src="{{question.solutionImg}}"width="100%"height="100%" alt="No Img">
+            </div>
+         </td>
+        </tr>
+      </table>
+      </div>
+      <!-- All Questions Table Ends -->
+
 
     </div>
   </div>
-
-
-
 </div>
 <script type="text/javascript" async
 src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/javascript">
+function LoadMathDB(){
+  console.log('LoadMathDB');
+  var x=document.getElementById('#LoadMath');
+  MathJax.Hub.Queue(["Typeset",MathJax.Hub,x]);
+}
 </script>

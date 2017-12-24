@@ -15,9 +15,33 @@ class AddtestComponent {
     this.message = 'Hello';
     this.$http=$http;
     this.socket=socket;
-    this.$scope=$scope;    
+    this.$scope=$scope;
+
+    this.testTypes=[];
+    this.allquestions=[];
+    this.myquestions=[];
   }
-}
+
+  $onInit(){
+
+    this.$http.get('/api/testtypes')
+    .then(response=>{
+        this.testTypes=response.data;
+        for(var i=0;i<this.testTypes.length;i++){
+        this.testTypes[i].Qtypes=JSON.parse(this.testTypes[i].Qtypes);
+        }
+
+    });
+
+    //Get All Questions
+    this.$http.get('/api/questions')
+      .then(response=>{
+        this.allquestions=response.data;
+      });
+  }
+
+}//End Class
+
 
 angular.module('sscTestSeriesApp')
   .component('addtest', {
