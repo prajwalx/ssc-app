@@ -3,9 +3,9 @@
 import mongoose from 'mongoose';
 
 var TestSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+  testTitle:String,
+  testType:String,
+  questionIDs:String//JSON string of an array of questionIDs
 });
 
 export default mongoose.model('Test', TestSchema);

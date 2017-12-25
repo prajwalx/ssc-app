@@ -1,0 +1,263 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="sidenavbarAdmin">
+        <a href="/admin"><span class="glyphicon glyphicon-home"></span> Dash Board</a><br>
+        <a href="/admin"><span class="glyphicon glyphicon-user"></span> Users</a><br>
+        <a href="/addquestype"><span class="glyphicon glyphicon-film"></span> Question Type</a><br>
+        <a href="/addquestion"><span class="glyphicon glyphicon-th"></span> Questions</a><br>
+        <a href="/addtesttype"><span class="glyphicon glyphicon-briefcase"></span> Test Type</a><br>
+        <a href="/addtest"><span class="glyphicon glyphicon-pencil"></span> Create Tests</a><br>
+        <a href="/edittest"><span class="glyphicon glyphicon-edit"></span> Edit Tests</a><br>
+        <a href="/addpack"><span class="glyphicon glyphicon-th-large"></span> Pack</a><br>
+
+      </div>
+    </div>
+    <div class="col-md-9">
+      <h2>My Test</h2>
+      <h5>View Test or <code>Delete</code></h5>
+      <div class="table"style="overflow-x:scroll">
+        <table class="table table-responsive table-bordered">
+          <tr>
+            <th>Test Name</th>
+            <th>Test Type</th>
+            <th>No.Of Questions</th>
+            <th>Duration</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          <tr ng-repeat="test in edittestCtrl.tests">
+            <td>{{test.testTitle}}</td>
+            <td>{{test.ObjTestType.Ttype}}</td>
+            <td>{{test.ObjTestType.NoOfQu}}</td>
+            <td>{{test.ObjTestType.Duration}}</td>
+            <td>
+              <button type="button" class="btn btn-primary"ng-click="edittestCtrl.loadForEdit(test)">
+               <span class="glyphicon glyphicon-edit"></span>
+              </button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger" ng-click="edittestCtrl.Delete(test)">
+               <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!--Tests Table Ends -->
+      <!--
+       Editing Section Begins- - - - - - - - - - - - - - - - - - - - - -
+ng-show="edittestCtrl.loaded"
+     -->
+     <div class="EditingSection">
+      <br><br><hr><br><hr>
+     <h2 class="text-primary">Edit Tests</h2>
+     <p>Edit <code>Tests</code> here. If you have to change <code>TestType</code>.Better Delete and Create New</p>
+
+     <br>
+     <br>
+     <form class="form" name="form" novalidate>
+
+       <div class="form-group">
+         <label>Test Name</label>
+         <input type="text" name="InputTestName" class="form-control" ng-model="edittestCtrl.InputTestName"
+         placeholder="SSC CGL TIER 1 Mock Test" required>
+       </div>
+       <div class="form-group has-error">
+         <p class="help-block" ng-show="form.InputTestName.$error.required && edittestCtrl.submitted">
+            Please Enter Test Name
+         </p>
+       </div>
+
+       <div class="form-group">
+         <label>Test Type</label>
+         <select  class="form-control" name="testType"ng-model="edittestCtrl.SelectedTestType"
+         ng-options="x.Ttype for x in edittestCtrl.testTypes" required>
+         </select>
+         <div class="form-group has-error">
+           <p class="help-block" ng-show="form.testType.$error.required && edittestCtrl.submitted">
+              Please Select Test Type
+           </p>
+           <p class="help-block" ng-show="edittestCtrl.myquestions.length!==edittestCtrl.SelectedTestType.NoOfQu ">
+              Please Add {{edittestCtrl.SelectedTestType.NoOfQu - edittestCtrl.myquestions.length}} more Questions
+           </p>
+         </div>
+       </div>
+
+       <div class="container">
+         <ul class="nav nav-pills pull-left"style="border:solid 4px whitesmoke"
+         ng-repeat="x in edittestCtrl.SelectedTestType.Qtypes">
+           <li ng-class="{ 'active':edittestCtrl.SelectedQTypeDOM===x}">
+             <a ng-click="edittestCtrl.SelectedQTypeDOM=x"onmousemove="LoadMathDB()"href="#">{{x}}</a></li>
+         </ul>
+       </div>
+
+       <!-- My Test Questions Starts -->
+
+       <h3>This Test {{edittestCtrl.SelectedQTypeDOM}} Questions</h3>
+       <div id="LoadMath"style="overflow-x:scroll;overflow-y:scroll;height:400px">
+         <hr>
+         <!-- <center><button type="button" class="btn btn-success"onclick="LoadMathDB()"onmousemove="LoadMathDB()">
+           Reload Maths
+         </button></center> -->
+       <table class="table table-responsive table-bordered">
+
+         <tr>
+           <th>S.No</th>
+           <th>Question</th>
+           <th>Question Type</th>
+           <th>Ques Image</th>
+           <th>Options</th>
+           <th>Ans</th>
+           <th>Solution</th>
+           <th>Solution Image</th>
+         </tr>
+         <tr ng-repeat="question in edittestCtrl.myquestions | filter:{questype:edittestCtrl.SelectedQTypeDOM}|filter:edittestCtrl.Search">
+           <td>{{$index +1}}</td>
+           <td>{{question.question}}
+             <br><br><br>
+             <button type="button" class="btn btn-danger"
+             ng-click="edittestCtrl.toggleQ(question)">
+               <span class="glyphicon glyphicon-minus"></span></button>
+           </td>
+           <td>{{question.questype}}</td>
+           <td>
+             <div ng-show="{{question.quesImg!==''}}"class=""style="height:250px;width:350px;overflow:hidden">
+               <img src=""ng-src="{{question.quesImg}}"width="100%"height="100%" alt="No Img">
+             </div>
+           </td>
+           <td>
+             <ul>
+               <li>{{question.a}}
+                 <div ng-show="{{question.aURL!==''}}"class="">
+                 <br><a ng-href="{{question.aURL}}"target="_blank">Option A Image</a>
+                 </div>
+               </li>
+               <li>{{question.b}}
+                 <div ng-show="{{question.bURL!==''}}"class="">
+                 <br><a ng-href="{{question.bURL}}"target="_blank">Option B Image</a>
+                 </div>
+               </li>
+               <li>{{question.c}}
+                 <div ng-show="{{question.cURL!==''}}"class="">
+                 <br><a ng-href="{{question.cURL}}"target="_blank">Option C Image</a>
+                 </div>
+               </li>
+               <li>{{question.d}}
+                 <div ng-show="{{question.dURL!==''}}"class="">
+                 <br><a ng-href="{{question.dURL}}"target="_blank">Option D Image</a>
+                 </div>
+               </li>
+             </ul>
+           </td>
+           <td>{{question.ans}}</td>
+           <td>{{question.solution}}</td>
+           <td>
+             <div ng-show="{{question.solutionImg!==''}}"class=""style="height:250px;width:250px;overflow:hidden">
+               <img src=""ng-src="{{question.solutionImg}}"width="100%"height="100%" alt="No Img">
+             </div>
+          </td>
+         </tr>
+       </table>
+       </div>
+       <!-- My Test Questions Ends -->
+
+     <br><br>
+     <button type="button" class="btn btn-success"ng-class="{ 'disabled':edittestCtrl.myquestions.length!==edittestCtrl.SelectedTestType.NoOfQu}"
+       ng-click="edittestCtrl.Update(form)">
+       Update Test
+     </button>
+     </form>
+
+     <hr><hr>
+     <!-- All Questions DB -->
+     <br><br><br>
+     <h3>All {{edittestCtrl.SelectedQTypeDOM}} Questions</h3><br>
+     <input type="text"class="form-control" name="Search" placeholder="Search Question Here"ng-model="edittestCtrl.Search">
+     <div id="LoadMath"style="overflow-x:scroll">
+       <br><br><hr>
+       <center><button type="button" class="btn btn-success"onclick="LoadMathDB()"onmousemove="LoadMathDB()">
+         Reload Maths
+       </button></center>
+     <table class="table table-responsive table-bordered">
+
+       <tr>
+         <th>S.No</th>
+         <th>Question</th>
+         <th>Question Type</th>
+         <th>Ques Image</th>
+         <th>Options</th>
+         <th>Ans</th>
+         <th>Solution</th>
+         <th>Solution Image</th>
+       </tr>
+       <tr ng-repeat="question in edittestCtrl.allquestions | filter:{questype:edittestCtrl.SelectedQTypeDOM}|filter:edittestCtrl.Search">
+         <td>{{$index +1}}</td>
+         <td>{{question.question}}
+           <br><br><br>
+           <button type="button" class="btn btn-success"
+           ng-click="edittestCtrl.toggleQ(question)">
+             <span class="glyphicon glyphicon-plus "></span></button>
+
+         </td>
+         <td>{{question.questype}}</td>
+         <td>
+           <div ng-show="{{question.quesImg!==''}}"class=""style="height:250px;width:350px;overflow:hidden">
+             <img src=""ng-src="{{question.quesImg}}"width="100%"height="100%" alt="No Img">
+           </div>
+         </td>
+         <td>
+           <ul>
+             <li>{{question.a}}
+               <div ng-show="{{question.aURL!==''}}"class="">
+               <br><a ng-href="{{question.aURL}}"target="_blank">Option A Image</a>
+               </div>
+             </li>
+             <li>{{question.b}}
+               <div ng-show="{{question.bURL!==''}}"class="">
+               <br><a ng-href="{{question.bURL}}"target="_blank">Option B Image</a>
+               </div>
+             </li>
+             <li>{{question.c}}
+               <div ng-show="{{question.cURL!==''}}"class="">
+               <br><a ng-href="{{question.cURL}}"target="_blank">Option C Image</a>
+               </div>
+             </li>
+             <li>{{question.d}}
+               <div ng-show="{{question.dURL!==''}}"class="">
+               <br><a ng-href="{{question.dURL}}"target="_blank">Option D Image</a>
+               </div>
+             </li>
+           </ul>
+         </td>
+         <td>{{question.ans}}</td>
+         <td>{{question.solution}}</td>
+         <td>
+           <div ng-show="{{question.solutionImg!==''}}"class=""style="height:250px;width:250px;overflow:hidden">
+             <img src=""ng-src="{{question.solutionImg}}"width="100%"height="100%" alt="No Img">
+           </div>
+        </td>
+       </tr>
+     </table>
+     </div>
+
+   </div>
+
+     <!--
+
+      Editing Section Ends - - - - - - - -  - - - - - - - - - - - - - - -
+
+      -->
+      <!-- End col-md-9 -->
+    </div>
+    <!--  Row End-->
+  </div>
+  <!-- Container End -->
+</div>
+<script type="text/javascript">
+function LoadMathDB(){
+  console.log('LoadMathDB ADMIN');
+  var x=document.getElementById('#LoadMath');
+  MathJax.Hub.Queue(["Typeset",MathJax.Hub,x]);
+}
+</script>

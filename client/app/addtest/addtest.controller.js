@@ -20,6 +20,7 @@ class AddtestComponent {
     this.testTypes=[];
     this.allquestions=[];
     this.myquestions=[];
+    this.questStr;
   }
 
   $onInit(){
@@ -43,11 +44,34 @@ class AddtestComponent {
   Create(form){
     this.submitted=true;
     if(form.$valid&&this.myquestions.length===this.SelectedTestType.NoOfQu){
-      alert('Valid');
-      this.submitted=false;
+      this.SortQuestions();
+      this.$http.post('/api/tests',{
+        testTitle:this.InputTestName,
+        testType:this.SelectedTestType._id,//Id of TestType
+        questionIDs:this.questStr//JSON string of Array of QIDS
+      })
+      .then(response=>{
+        alert('Added');
+        location.href='/addtest';//Simply Reset Page
+      });
     }
   }
 
+  /*
+  Sort Questions IDS in order of QuesTypes into JSON String
+  */
+  SortQuestions(){
+    var arr=[];
+    for(var i in this.SelectedTestType.Qtypes){
+      for(var j in this.myquestions){
+        if(this.myquestions[j].questype===this.SelectedTestType.Qtypes[i])
+        arr.push(this.myquestions[j]._id);
+      }//end-for-loop2
+    }//end-for-loop1
+    console.log(this.myquestions);
+    console.log(arr);
+    this.questStr=angular.toJson(arr);
+  }//end SortQuestions
 
   /*
   toggleQ from all questypes to electedQuesTypes and vice-versa
