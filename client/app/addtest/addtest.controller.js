@@ -40,6 +40,14 @@ class AddtestComponent {
       });
   }
 
+  Create(form){
+    this.submitted=true;
+    if(form.$valid&&this.myquestions.length===this.SelectedTestType.NoOfQu){
+      alert('Valid');
+      this.submitted=false;
+    }
+  }
+
 
   /*
   toggleQ from all questypes to electedQuesTypes and vice-versa
@@ -57,9 +65,12 @@ class AddtestComponent {
   }
 
   /*
-  ReSet myquestions and allquestions if ng-change on select 
+  ReSet myquestions and allquestions if ng-change on select
+  And Default Select first Qtype for DOM ng-filter
   */
   Reload(){
+    //ng-filter-init
+    this.SelectedQTypeDOM=this.SelectedTestType.Qtypes[0];
 
     var tempAll=this.allquestions;
     var tempMy=this.myquestions;

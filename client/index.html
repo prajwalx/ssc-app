@@ -59,6 +59,8 @@
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
+    <!-- Not Injected by bower -->
+    <script src="bower_components/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- build:js({client,node_modules}) app/vendor.js -->
       <!-- bower:js -->
       <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -72,9 +74,8 @@
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
       <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+      <script src="bower_components/MathJax/MathJax.js"></script>
       <!-- endbower -->
-      <!-- Async Not Injected by bower -->
-      <script src="bower_components/MathJax/MathJax.js" async></script>
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->
@@ -117,9 +118,9 @@
       <script src="components/socket/socket.service.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
-      <script type="text/javascript" async
+      <!-- <script type="text/javascript" async
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
-      </script>
+      </script> -->
     <!-- endbuild -->
   </body>
 </html>

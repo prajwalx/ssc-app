@@ -123,8 +123,11 @@
         </div>
         <!-- My Test Questions Ends -->
 
-
-
+      <br><br>
+      <button type="button" class="btn btn-success"ng-class="{ 'disabled':addtestCtrl.myquestions.length!==addtestCtrl.SelectedTestType.NoOfQu}"
+        ng-click="addtestCtrl.Create(form)">
+        Create Test
+      </button>
       </form>
 
       <hr><hr>
@@ -207,9 +210,10 @@
 <!-- <script type="text/javascript" async
 src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
 </script> -->
+<!-- <script src="bower_components/MathJax/MathJax.js" async></script> -->
 <script type="text/javascript">
 function LoadMathDB(){
-  console.log('LoadMathDB');
+  console.log('LoadMathDB ADMIN');
   var x=document.getElementById('#LoadMath');
   MathJax.Hub.Queue(["Typeset",MathJax.Hub,x]);
 }
