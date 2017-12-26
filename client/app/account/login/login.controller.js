@@ -20,7 +20,11 @@ class LoginController {
         })
         .then(() => {
           // Logged in, redirect to home
+          // this.$location.path('/');
+          if(sessionStorage.getItem('pid')==='')
           this.$location.path('/');
+          else
+          this.$location.path('/payment');
         })
         .catch(err => {
           this.errors.other = err.message;

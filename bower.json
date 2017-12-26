@@ -15,7 +15,8 @@
     "angular-socket-io": "~0.7.0",
     "angular-validation-match": "~1.5.2",
     "bootstrap": "^3.3.7",
-    "MathJax": "^2.7.2"
+    "MathJax": "^2.7.2",
+    "bootstrap-sweetalert": "^1.0.1"
   },
   "overrides": {
     "bootstrap": {

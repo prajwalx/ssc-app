@@ -15,15 +15,17 @@ router.post('/',function(req,res) {
   // this.hseq = ( this.key + '|' + this.tid + '|' +this.amount + '|' +this.productinfo + '|'
   // + this.firstname + '|' + this.email + '|' + this.udf1 + '|'+this.udf2+'|'+this.udf3+'|'
   // +this.udf4+'|'+this.udf5+'||||||');
+  console.log(req.body);
+  var pack=JSON.parse(req.body.pack);
   var udf='';
   var key='xcBWWs3T';
   var salt='HYfr24pBbF';
   var tid="BE"+(new Date().toUTCString());
-  var amount=250;//to get from packid
+  var amount=pack.Price;//to get from packid
   var name=req.body.name;
   var email=req.body.email;
   var phone=req.body.phone;
-  var productinfo='SSC CGL Tier 1 Pack';//to get from packid
+  var productinfo=pack.ProductInfo;//to get from packid
   var prehsh= key + '|' + tid + '|' + amount + '|' + productinfo + '|' +name + '|'
               + email  +'|||||'+'||||||'+salt;
 

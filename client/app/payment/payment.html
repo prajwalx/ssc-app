@@ -1,51 +1,39 @@
-<!--<head>
+<head>
   <style media="screen">
   hr.style5 {
 background-color: #fff;
 border-top: 2px dashed #8c8b8b;
 }
   </style>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
+    <script id="bolt" src="https://sboxcheckout-static.citruspay.com/bolt/run/bolt.min.js" bolt-
+  color="<color-code>" bolt-logo="<image path>"></script>
+
 </head>
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-4">
+      <div class="panel panel-default text-center pricePanel">
+        <div class="panel-heading pricePanelHead">
+          <h1>{{paymentCtrl.pack.PackName}}</h1>
+        </div>
+        <div class="panel-body">
+          <p><strong>{{paymentCtrl.pack.NoOfTest}}</strong> Mock Tests</p>
+          <p><strong>{{paymentCtrl.testType.Maxmarks}}</strong> Marks</p>
+          <p><strong>{{paymentCtrl.testType.Duration}}</strong> Minutes</p>
+          <p><strong>1</strong> Free Test</p>
+          <!-- <p><strong>Endless</strong> Amet</p> -->
+        </div>
+        <div class="panel-footer pricePanelFoot">
+          <h3>&#8377;{{paymentCtrl.pack.Price}}.00</h3>
+          <!-- <h4>per month</h4> -->
+          <!-- <button class="btn btn-lg">Buy Now</button> -->
+        </div>
+      </div>
 
-
-    <table class="table table-responsive">
-      <tr>
-        <th>Image</th><th>Title</th><th>Price</th><th>Quantity</th>
-      </tr>
-
-      <tr>
-        <td>
-          <div class="panel panel-default text-center pricePanel">
-            <div class="panel-heading pricePanelHead">
-              <h1>SSC CGL Tier-I</h1>
-            </div>
-            <div class="panel-body">
-              <p><strong>20</strong> Mock Tests</p>
-              <p><strong>200</strong> Marks</p>
-              <p><strong>60</strong> Minutes</p>
-              <p><strong>1</strong> Free Test</p>
-              <!- - <p><strong>Endless</strong> Amet</p> - ->
-            </div>
-            <div class="panel-footer pricePanelFoot">
-              <h3>&#8377;250.00</h3>
-              <!- - <h4>per month</h4> - ->
-              <button class="btn btn-lg">Buy Now</button>
-            </div>
-          </div>
-        </td>
-        <td>
-          <a href="#">LED Spacer Single Pin, 6mm,8.5mm </a><br><br>
-
-        </td>
-        <td>Rs. 45.00</td>
-        <td> 1</td>
-      </tr>
-    </table>
     <hr class="style5">
-    <div class="panel panel-primary text-right">
+    <!-- <div class="panel panel-primary text-right">
       <div class="panel-heading">
         <h3 class="panel-title">Subtotal</h3>
       </div>
@@ -55,70 +43,63 @@ border-top: 2px dashed #8c8b8b;
       <div class="panel-footer">
 
       </div>
-    </div>
+    </div> -->
 
     </div>
 
-     <div class="col-md-6 col-md-offset-3">
-       <div>
-         <button class="btn btn-primary btn-lg btn-register">
+     <div class="col-md-6 ">
+       <div id="myidforJS">
+         <!-- <button class="btn btn-primary btn-lg btn-register">
            Pay Now
-         </button>
+         </button> -->
          <br><br>
 
        </div>
-     </div>
 
-    <!- -  <form class="form" name="form" ng-submit="vm.paynow(form)" novalidate>
 
-        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && vm.submitted,
-                                            'has-error': form.name.$invalid && vm.submitted }">
+      <form class="form" name="form" ng-submit="paymentCtrl.Validate(form)" novalidate>
+
+        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && paymentCtrl.submitted,
+                                            'has-error': form.name.$invalid && paymentCtrl.submitted }">
           <label>Name</label>
 
-          <input type="text" name="name" placeholder="Enter your Name"class="form-control" ng-model="vm.user.name"
+          <input type="text" name="name" placeholder="Enter your Name"class="form-control" ng-model="paymentCtrl.user.name"
                  required/>
-          <p class="help-block" ng-show="form.name.$error.required && vm.submitted">
+          <p class="help-block" ng-show="form.name.$error.required && paymentCtrl.submitted">
             A name is required
           </p>
         </div>
 
-        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
-                                            'has-error': form.email.$invalid && vm.submitted }">
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && paymentCtrl.submitted,
+                                            'has-error': form.email.$invalid && paymentCtrl.submitted }">
           <label>Email</label>
 
-          <input type="email" placeholder="Enter your Email"name="email" class="form-control" ng-model="vm.user.email"
+          <input type="email" placeholder="Enter your Email"name="email" class="form-control" ng-model="paymentCtrl.user.email"
                  required
-                 mongoose-error/>
-          <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
+                 />
+          <p class="help-block" ng-show="form.email.$error.email && paymentCtrl.submitted">
             Doesn't look like a valid email.
           </p>
-          <p class="help-block" ng-show="form.email.$error.required && vm.submitted">
+          <p class="help-block" ng-show="form.email.$error.required && paymentCtrl.submitted">
             What's your email address?
           </p>
-          <p class="help-block" ng-show="form.email.$error.mongoose">
-            {{ vm.errors.email }}
-          </p>
+
         </div>
 
-        <div class="form-group"ng-class="{ 'has-success': form.mobile.$valid && vm.submitted,
-                                            'has-error': form.mobile.$invalid && vm.submitted }">
+        <div class="form-group"ng-class="{ 'has-success': form.mobile.$valid && paymentCtrl.submitted,
+                                            'has-error': form.mobile.$invalid && paymentCtrl.submitted }">
           <label>Phone No</label>
 
-          <input type="text" placeholder="Enter your Phone No"name="mobile" class="form-control" ng-model="vm.user.mobile"
+          <input type="text" placeholder="Enter your Phone No"name="mobile" class="form-control" ng-model="paymentCtrl.user.mobile"
                  ng-minlength="10"ng-maxlength="10"required
-                 mongoose-error/>
-          <p class="help-block"ng-show="form.mobile.$error.mongoose">
-            {{vm.errors.mobile}}
-          </p>
-          <p class="help-block"ng-show="form.mobile.$error.required && vm.submitted">
+                 />
+          <p class="help-block"ng-show="form.mobile.$error.required && paymentCtrl.submitted">
           Phone Number is Required
           </p>
-
-          <p class="help-block"ng-show="form.mobile.$error.maxlength && vm.submitted">
+          <p class="help-block"ng-show="form.mobile.$error.maxlength && paymentCtrl.submitted">
           Phone Number must be of 10 digits only.
           </p>
-
-          <p class="help-block"ng-show="form.mobile.$error.minlength && vm.submitted">
+          <p class="help-block"ng-show="form.mobile.$error.minlength && paymentCtrl.submitted">
           Phone Number must be of 10 digits only.
           </p>
         </div>
