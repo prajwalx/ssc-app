@@ -15,47 +15,78 @@
       </div>
     </div>
     <div class="col-md-9">
-        <h2 class="text-primary">Add Packs</h2>
-        <p>Add <code>Test Packs</code> Here</p>
+        <h2 class="text-primary">Edit Packs</h2>
+        <p>Edit or Delete <code>Test Packs</code> Here</p>
+
+        <!-- My Packs -->
+        <div class="table"style="overflow-x:scroll">
+          <table class="table table-responsive table-bordered">
+            <tr>
+              <th>Pack Name</th>
+              <th>Price</th>
+              <th>Product Info</th>
+              <th>No.Of Tests</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+            <tr ng-repeat="pack in editpackCtrl.packs">
+              <td>{{pack.PackName}}</td>
+              <td>{{pack.Price}}</td>
+              <td>{{pack.ProductInfo}}</td>
+              <td>{{pack.NoOfTest}}</td>
+              <td>
+                <button type="button" class="btn btn-primary"ng-click="editpackCtrl.loadForEdit(pack)">
+                 <span class="glyphicon glyphicon-edit"></span>
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger" ng-click="editpackCtrl.Delete(pack)">
+                 <span class="glyphicon glyphicon-trash"></span>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <!--My Packs Table Ends -->
 
         <form class="form" name="form" novalidate>
 
           <div class="form-group">
             <label>Pack Name</label>
-            <input type="text" name="PackName" class="form-control" ng-model="addpackCtrl.PackName" required>
+            <input type="text" name="PackName" class="form-control" ng-model="editpackCtrl.PackName" required>
           </div>
           <div class="form-group has-error">
-            <p class="help-block" ng-show="form.PackName.$error.required && addpackCtrl.submitted">
+            <p class="help-block" ng-show="form.PackName.$error.required && editpackCtrl.submitted">
                Please Enter Pack Name
             </p>
           </div>
 
           <div class="form-group">
             <label>Price</label>
-            <input type="number" name="Price" class="form-control" ng-model="addpackCtrl.Price" required>
+            <input type="number" name="Price" class="form-control" ng-model="editpackCtrl.Price" required>
           </div>
           <div class="form-group has-error">
-            <p class="help-block" ng-show="form.Price.$error.number && addpackCtrl.submitted">
+            <p class="help-block" ng-show="form.Price.$error.number && editpackCtrl.submitted">
               Price in Numbers Only
             </p>
-            <p class="help-block" ng-show="form.Price.$error.required && addpackCtrl.submitted">
+            <p class="help-block" ng-show="form.Price.$error.required && editpackCtrl.submitted">
                Please Enter Price
             </p>
           </div>
 
           <div class="form-group">
             <label>Product Info for PayuMoney</label>
-            <input type="text" name="ProductInfo" class="form-control" ng-model="addpackCtrl.ProductInfo" required>
+            <input type="text" name="ProductInfo" class="form-control" ng-model="editpackCtrl.ProductInfo" required>
           </div>
           <div class="form-group has-error">
-            <p class="help-block" ng-show="form.ProductInfo.$error.required && addpackCtrl.submitted">
+            <p class="help-block" ng-show="form.ProductInfo.$error.required && editpackCtrl.submitted">
                Please Enter Product  Info For PayuMoney
             </p>
           </div>
 
           <div class="form-group">
             <label>No.Of Tests</label>
-            <input type="text"class="form-control" name="NoOfTests"ng-model="addpackCtrl.mytests.length" value="" disabled>
+            <input type="text"class="form-control" name="NoOfTests"ng-model="editpackCtrl.mytests.length" value="" disabled>
           </div>
 
           <!-- My Tests Starts -->
@@ -71,12 +102,12 @@
               <th>No Of Questions</th>
               <th>Duration</th>
             </tr>
-            <tr ng-repeat="test in addpackCtrl.mytests">
+            <tr ng-repeat="test in editpackCtrl.mytests">
               <td>{{$index +1}}</td>
               <td>{{test.testTitle}}
                 <br><br><br>
                 <button type="button" class="btn btn-danger"
-                ng-click="addpackCtrl.toggleT(test)">
+                ng-click="editpackCtrl.toggleT(test)">
                   <span class="glyphicon glyphicon-minus"></span></button>
               </td>
               <td>{{test.ObjTestType.Ttype}}</td>
@@ -88,8 +119,8 @@
           <!-- My Tests Ends -->
 
           <div>
-            <button class="btn btn-primary btn-lg btn-login" type="button"ng-click="addpackCtrl.Create(form)">
-              Create Pack
+            <button class="btn btn-primary btn-lg btn-login" type="button"ng-click="editpackCtrl.Update(form)">
+              Update Pack
             </button>
             <br><br>
           </div>
@@ -110,12 +141,12 @@
             <th>No Of Questions</th>
             <th>Duration</th>
           </tr>
-          <tr ng-repeat="test in addpackCtrl.alltests">
+          <tr ng-repeat="test in editpackCtrl.alltests">
             <td>{{$index +1}}</td>
             <td>{{test.testTitle}}
               <br><br><br>
               <button type="button" class="btn btn-success"
-              ng-click="addpackCtrl.toggleT(test)">
+              ng-click="editpackCtrl.toggleT(test)">
                 <span class="glyphicon glyphicon-plus"></span></button>
             </td>
             <td>{{test.ObjTestType.Ttype}}</td>
