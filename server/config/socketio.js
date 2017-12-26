@@ -17,6 +17,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/pack/pack.socket').register(socket);
   require('../api/test/test.socket').register(socket);
   require('../api/testtype/testtype.socket').register(socket);
   require('../api/questype/questype.socket').register(socket);

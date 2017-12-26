@@ -1,0 +1,134 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="sidenavbarAdmin">
+        <a href="/admin"><span class="glyphicon glyphicon-home"></span> Dash Board</a><br>
+        <a href="/admin"><span class="glyphicon glyphicon-user"></span> Users</a><br>
+        <a href="/addquestype"><span class="glyphicon glyphicon-film"></span> Question Type</a><br>
+        <a href="/addquestion"><span class="glyphicon glyphicon-th"></span> Questions</a><br>
+        <a href="/addtesttype"><span class="glyphicon glyphicon-briefcase"></span> Test Type</a><br>
+        <a href="/addtest"><span class="glyphicon glyphicon-pencil"></span> Create Tests</a><br>
+        <a href="/edittest"><span class="glyphicon glyphicon-edit"></span> Edit Tests</a><br>
+        <a href="/addpack"><span class="glyphicon glyphicon-th-large"></span> Pack</a><br>
+
+      </div>
+    </div>
+    <div class="col-md-9">
+        <h2 class="text-primary">Add Packs</h2>
+        <p>Add <code>Test Packs</code> Here</p>
+
+        <form class="form" name="form" novalidate>
+
+          <div class="form-group">
+            <label>Pack Name</label>
+            <input type="text" name="PackName" class="form-control" ng-model="addpackCtrl.PackName" required>
+          </div>
+          <div class="form-group has-error">
+            <p class="help-block" ng-show="form.PackName.$error.required && addpackCtrl.submitted">
+               Please Enter Pack Name
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label>Price</label>
+            <input type="number" name="Price" class="form-control" ng-model="addpackCtrl.Price" required>
+          </div>
+          <div class="form-group has-error">
+            <p class="help-block" ng-show="form.Price.$error.number && addpackCtrl.submitted">
+              Price in Numbers Only
+            </p>
+            <p class="help-block" ng-show="form.Price.$error.required && addpackCtrl.submitted">
+               Please Enter Price
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label>Product Info for PayuMoney</label>
+            <input type="text" name="ProductInfo" class="form-control" ng-model="addpackCtrl.ProductInfo" required>
+          </div>
+          <div class="form-group has-error">
+            <p class="help-block" ng-show="form.ProductInfo.$error.required && addpackCtrl.submitted">
+               Please Enter Product  Info For PayuMoney
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label>No.Of Tests</label>
+            <input type="text"class="form-control" name="NoOfTests"ng-model="addpackCtrl.mytests.length" value="" disabled>
+          </div>
+
+          <!-- My Tests Starts -->
+          <h3>This Pack Tests</h3>
+          <div style="overflow-x:scroll;overflow-y:scroll;height:400px">
+            <hr>
+          <table class="table table-responsive table-bordered">
+
+            <tr>
+              <th>S.No</th>
+              <th>Test Name</th>
+              <th>Test Type</th>
+              <th>No Of Questions</th>
+              <th>Duration</th>
+            </tr>
+            <tr ng-repeat="test in addpackCtrl.mytests">
+              <td>{{$index +1}}</td>
+              <td>{{test.testTitle}}
+                <br><br><br>
+                <button type="button" class="btn btn-danger"
+                ng-click="addpackCtrl.toggleT(test)">
+                  <span class="glyphicon glyphicon-minus"></span></button>
+              </td>
+              <td>{{test.ObjTestType.Ttype}}</td>
+              <td>{{test.ObjTestType.NoOfQu}}</td>
+              <td>{{test.ObjTestType.Duration}}</td>
+            </tr>
+          </table>
+          </div>
+          <!-- My Tests Ends -->
+
+          <div>
+            <button class="btn btn-primary btn-lg btn-login" type="button"ng-click="addpackCtrl.Create(form)">
+              Create Pack
+            </button>
+            <br><br>
+          </div>
+
+        </form>
+
+
+        <!-- All Tests Starts -->
+        <h3>All Tests</h3>
+        <div style="overflow-x:scroll;overflow-y:scroll;height:400px">
+          <hr>
+        <table class="table table-responsive table-bordered">
+
+          <tr>
+            <th>S.No</th>
+            <th>Test Name</th>
+            <th>Test Type</th>
+            <th>No Of Questions</th>
+            <th>Duration</th>
+          </tr>
+          <tr ng-repeat="test in addpackCtrl.alltests">
+            <td>{{$index +1}}</td>
+            <td>{{test.testTitle}}
+              <br><br><br>
+              <button type="button" class="btn btn-success"
+              ng-click="addpackCtrl.toggleT(test)">
+                <span class="glyphicon glyphicon-plus"></span></button>
+            </td>
+            <td>{{test.ObjTestType.Ttype}}</td>
+            <td>{{test.ObjTestType.NoOfQu}}</td>
+            <td>{{test.ObjTestType.Duration}}</td>
+          </tr>
+        </table>
+        </div>
+        <!-- All Tests Ends -->
+
+
+    </div>
+  </div>
+</div>
+<!-- <script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> -->
