@@ -1,0 +1,75 @@
+<div class="container-fluid"style="background-color:#e8e8e8;min-height:75vh;">
+<div class="container">
+  <div class="col-md-10 col-md-offset-1"style="background-color:white;margin-top:50px;padding-top:1%;">
+    <div class="col-md-12">
+      <h3>My Packages</h3>
+      <hr></hr>
+      <!-- <h3 style="color:mediumseagreen;font-weight:300;">SSC CGL</h3> -->
+    </div>
+    <div class="Package"ng-repeat="pack in mypackagesCtrl.packs">
+    <div class="col-md-8">
+      <h3 ><a href="#"class="stylepackageAnchor">{{pack.PackName}}</a></h3>
+      <p style="color:grey;">{{pack.NoOfTest}} Mock Tests | {{pack.specs.Maxmarks}} Marks | {{pack.specs.Duration}} Minutes</p>
+      </div>
+      <div class="col-md-4"style="padding-top:3%;">
+      <button type="button" class="btn btn-md  viewpackbtn ">
+        VIEW PACK
+      </button>
+      <button ng-show="mypackagesCtrl.isPurchased(pack._id)"type="button" class="btn btn-md buypackbtn ">
+        BUY NOW
+      </button>
+      </div>
+      <div class="col-md-12"><hr></div>
+      </div>
+
+      <!-- <div class="Package">
+      <div class="col-md-8">
+        <h3 ><a href="#"class="stylepackageAnchor">SSC CGL Tier 1 Pack 1</a></h3>
+        <p style="color:grey;">20 Mock Tests | 200 Marks | 60 Minutes</p>
+        </div>
+        <div class="col-md-4"style="padding-top:3%;">
+        <button type="button" class="btn btn-md viewpackbtn ">
+          VIEW PACK
+        </button>
+        <button type="button" class="btn btn-md buypackbtn ">
+          BUY NOW
+        </button>
+        </div>
+        <div class="col-md-12"><hr></div>
+        </div>
+
+        <div class="Package">
+        <div class="col-md-8">
+          <h3 ><a href="#"class="stylepackageAnchor">SSC CGL Tier 1 Pack 1</a></h3>
+          <p style="color:grey;">20 Mock Tests | 200 Marks | 60 Minutes</p>
+          </div>
+          <div class="col-md-4"style="padding-top:3%;">
+          <button type="button" class="btn btn-md viewpackbtn ">
+            VIEW PACK
+          </button>
+          <button type="button" class="btn btn-md buypackbtn ">
+            BUY NOW
+          </button>
+          </div>
+          <div class="col-md-12"><hr></div>
+          </div>
+
+          <div class="Package">
+          <div class="col-md-8">
+            <h3 ><a href="#"class="stylepackageAnchor">SSC CGL Tier 1 Pack 1</a></h3>
+            <p style="color:grey;">20 Mock Tests | 200 Marks | 60 Minutes</p>
+            </div>
+            <div class="col-md-4"style="padding-top:3%;">
+            <button type="button" class="btn btn-md viewpackbtn ">
+              VIEW PACK
+            </button>
+            <button type="button" class="btn btn-md buypackbtn ">
+              BUY NOW
+            </button>
+            </div>
+            <div class="col-md-12"><hr></div>
+            </div> -->
+
+    </div>
+</div>
+</div>

@@ -1,0 +1,29 @@
+.stylepackageAnchor{
+  text-decoration: none;
+  color: black;
+  font-weight:300;
+
+}
+.stylepackageAnchor:hover{
+  color:mediumseagreen;
+  text-decoration: none;
+}
+.viewpackbtn{
+  border: solid 2px grey;
+  padding-left: 10px;
+  color: grey;
+  background-color: white;
+}
+.viewpackbtn:hover{
+  border: solid 2px mediumseagreen;
+  color: mediumseagreen;
+}
+.buypackbtn{
+  border: solid 2px seagreen;
+  background-color: mediumseagreen;
+  color:white;
+}
+.buypackbtn:hover{
+  background-color: mediumseagreen;
+  color:white;
+}

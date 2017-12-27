@@ -61,11 +61,11 @@
         <!-- <li ng-show="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p> </li> -->
         <li class="dropdown"ng-show="nav.isLoggedIn()">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <span class="glyphicon glyphicon-user"></span> Profile
+            <span class="glyphicon glyphicon-user"></span> {{nav.getCurrentUser().name}}
         <span class="caret"></span></a>
         <ul class="dropdown-menu navdropStyle">
           <br>
-          <li><a href="#">MY PACKAGES</a></li><br><br>
+          <li><a href="/mypackages">MY PACKAGES</a></li><br><br>
           <li><a href="#">CONTACT US</a></li><br><br>
           <li><a href="/settings">PASSWORD</a></li><br><br>
           <li><a href="/logout">LOG OUT</a></li><br><br>
