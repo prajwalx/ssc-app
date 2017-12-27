@@ -16,6 +16,16 @@ var UserSchema = new Schema({
     type: String,
     required: true,
   },
+
+  packIDs:{
+    type:String,
+    default:''
+  },//JSON array stringed
+  payment:{
+    type:Number,
+    default:0
+  },//Sum of all payments
+
   resetPasswordToken: String,//for forget pwd
   resetPasswordExpires: Date,//http://sahatyalkabov.com/how-to-implement-password-reset-in-nodejs/
   role: {

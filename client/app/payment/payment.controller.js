@@ -21,7 +21,7 @@ class PaymentComponent {
       .then(response=>{
         this.pack=response.data;
         this.GetPriceAndDuration(JSON.parse(this.pack.TestIDs));
-      });            
+      });
   }
 
   GetPriceAndDuration(tids){
@@ -136,14 +136,28 @@ class PaymentComponent {
     this.$http.get('/api/hash/verify/:'+obj).then(response =>{
       console.log(response.data);
       if(response.data==='1'&&res.txnStatus==='SUCCESS'){
-      swal("Good job!", "Now Start Practising!", "success");//bower install bootstrap-sweetalert --save
-      // TODO: Redirect to user Dashboard
-      //Save to DB
-      location.href='/';
+
+      this.paymentSuccess();
       }
+      else
+      alert(res.txnStatus);
     });
 
   }//End-Verify
+
+  paymentSuccess(){
+    this.loading='fa fa-spinner loader';
+    //save to DB
+    this.$http.post('/api/myuser/',{
+      id:this.user._id,
+      pack:angular.toJson(this.pack)
+    })
+      .then(response=>{
+        this.loading="";
+        location.href='/';// TODO: Redirect to DashBoard
+      });
+
+  }
 
 }//End-class
 
