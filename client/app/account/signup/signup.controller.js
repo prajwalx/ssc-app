@@ -27,7 +27,7 @@ class SignupController {
           // Account created, redirect to home
           //TODO:if paid test goto Payments
           //    else go to Free user Dashboard
-          if(sessionStorage.getItem('pid')==='')
+          if(sessionStorage.getItem('pid')===''||!sessionStorage.getItem('pid'))
           this.$location.path('/');
           else
           this.$location.path('/payment');
