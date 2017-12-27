@@ -24,8 +24,19 @@
     background:red;
     color:white;
 }
+.navdropStyle a {
+  text-decoration: none;
+  font-size:14px;
+  letter-spacing:3px;
+
+}
+.navdropStyle a:hover{
+  font-weight: bold;
+  color:blue;
+  font-size: 14.5px;
+}
 </style>
-<div class="navbar navbar-default navbar-static-top"style="margin-bottom:0;" ng-controller="NavbarController">
+<div class="navbar navbar-default navbar-fixed-top"style="margin-bottom:0;" ng-controller="NavbarController">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
@@ -47,9 +58,21 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/signup')}"><a href="/signup">Sign up</a></li>
         <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/login')}"><a href="/login">Login</a></li>
-        <li ng-show="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p> </li>
-        <li ng-show="nav.isLoggedIn()" ng-class="{active: nav.isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-        <li ng-show="nav.isLoggedIn()"><a href="/logout">Logout</a></li>
+        <!-- <li ng-show="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p> </li> -->
+        <li class="dropdown"ng-show="nav.isLoggedIn()">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class="glyphicon glyphicon-user"></span> Profile
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu navdropStyle">
+          <br>
+          <li><a href="#">MY PACKAGES</a></li><br><br>
+          <li><a href="#">CONTACT US</a></li><br><br>
+          <li><a href="/settings">PASSWORD</a></li><br><br>
+          <li><a href="/logout">LOG OUT</a></li><br><br>
+        </ul>
+        </li>
+        <!-- <li ng-show="nav.isLoggedIn()" ng-class="{active: nav.isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li> -->
+        <li ng-show="nav.isAdmin()"><a href="/logout">Logout</a></li>
       </ul>
     </div>
   </div>
