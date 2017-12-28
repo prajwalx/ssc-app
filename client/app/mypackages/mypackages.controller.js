@@ -9,10 +9,6 @@ class MypackagesComponent {
     this.$scope=$scope;
     this.Auth=Auth;
 
-    this.purchasedIds=(this.Auth.getCurrentUser().packIDs);
-    if(this.purchasedIds)
-    this.purchasedIds=JSON.parse(this.purchasedIds);
-
     this.packs=[];
   }
   $onInit(){
@@ -24,6 +20,26 @@ class MypackagesComponent {
           this.GetAndSetSpecs(i);
         }
       });
+
+      // @kingcody sorry, my fault in explaining.
+      // I was particularly focused on the isAdmin method and
+      //I see that it returns a Bool if no argument is present.
+      // Correct me if I am wrong, but this means I have to pass
+      //a non-function callback as argument to use the promise, right?
+      this.Auth.getCurrentUser(function(usr){
+        console.log(usr);
+      }).then(res=>{
+        this.GetandSetPids(res.packIDs);
+      });
+
+  }
+
+  GetandSetPids(packIDs){
+    //this.user=this.Auth.getCurrentUser();
+    console.log(packIDs);
+    this.purchasedIds=packIDs;
+    if(this.purchasedIds!==''&&this.purchasedIds)//Non-empty&&defined
+    this.purchasedIds=JSON.parse(this.purchasedIds);
   }
 
   GetAndSetSpecs(i){
@@ -38,15 +54,31 @@ class MypackagesComponent {
   }
   isPurchased(id){
     if(!this.purchasedIds)
-    return true;
+    return false;
     for(var i in this.purchasedIds){
       if(id===this.purchasedIds[i])
-      return false;
+      return true;
     }
-    return true;
+    return false;
 
   }
+  buy(id){
+    if(!this.isPurchased(id)){
+    sessionStorage.setItem('pid',id);
+    location.href='/payment';
+  }
+  else{
+    this.open(id);
+  }
+
+  }
+  open(id){
+    console.log(this.user.name);
+    alert(this.purchasedIds);
+    alert('Create open '+id);
+  }
 }
+
 
 angular.module('sscTestSeriesApp')
   .component('mypackages', {

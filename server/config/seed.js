@@ -45,6 +45,7 @@ User.find({}).remove()
       provider: 'local',
       name: 'Test User',
       email: 'test@example.com',
+      packIDs:"[\"5a422cc44e6415042972567a\"]",
       password: 'test',
       mobile:'1234123412'
     }, {
