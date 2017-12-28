@@ -13,10 +13,6 @@ class PaymentComponent {
     this.pack;
     this.testType;
 
-    $scope.$on('$destroy', function() {
-      sessionStorage.setItem('pid','');
-    });
-
   }
 
   $onInit(){
