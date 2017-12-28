@@ -62,20 +62,20 @@ class MypackagesComponent {
     return false;
 
   }
+
   buy(id){
     if(!this.isPurchased(id)){
     sessionStorage.setItem('pid',id);
     location.href='/payment';
-  }
+    }
   else{
     this.open(id);
+    }
   }
 
-  }
   open(id){
-    console.log(this.user.name);
-    alert(this.purchasedIds);
-    alert('Create open '+id);
+    sessionStorage.setItem('opid',id);
+    location.href='/viewpack';
   }
 }
 

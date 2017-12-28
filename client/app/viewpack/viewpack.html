@@ -1,0 +1,67 @@
+<div class="container-fluid"style="background-color:#e8e8e8;min-height:75vh;">
+<div class="container">
+  <div class="col-md-10 col-md-offset-1"style="background-color:white;margin-top:50px;padding-top:1%;">
+
+    <div class="col-md-4">
+      <div class="panel panel-default text-center pricePanel">
+        <div class="panel-heading pricePanelHead"style="padding:2%">
+          <h3>{{viewpackCtrl.pack.PackName}}</h3>
+        </div>
+        <div class="panel-body">
+          <p><strong>{{viewpackCtrl.pack.NoOfTest}}</strong> Mock Tests</p>
+          <p><strong>{{viewpackCtrl.pack.testType.Maxmarks}}</strong> Marks</p>
+          <p><strong>{{viewpackCtrl.pack.testType.Duration}}</strong> Minutes</p>
+          <p><strong>1</strong> Free Test</p>
+          <!-- <p><strong>Endless</strong> Amet</p> -->
+        </div>
+      </div>
+    <hr>
+    </div>
+
+    <div class="col-md-4">
+    <h3 ><a ng-click="mypackagesCtrl.buy(pack._id)"class="styleviewpackageAnchor">{{viewpackCtrl.pack.PackName}}</a></h3><br>
+    <ul style="color:grey;font-weight:303;font-size:18px;">
+      <li>{{viewpackCtrl.pack.NoOfTest}} Mock Tests</li>
+      <li>Based on Latest Syllabus</li>
+      <li>Solutions and Answers</li>
+    </ul>
+    </div>
+
+    <div class="col-md-4 text-center v-center">
+      <div class=" pricePanelFoot ">
+        <br>
+        <h3 style="color:mediumseagreen;vertical-align:middle">&#8377;{{viewpackCtrl.pack.Price}}/-</h3>
+        <!-- <h4>per month</h4> -->
+        <!-- <button class="btn btn-lg">Buy Now</button> -->
+      </div>
+      <br>
+      <button ng-hide="mypackagesCtrl.isPurchased(pack._id)"type="button" class="btn btn-lg buyviewpackbtn "ng-click="mypackagesCtrl.buy(pack._id)">
+        BUY NOW
+      </button>
+    </div>
+
+  </div>
+
+  <div class="col-md-10 col-md-offset-1"style="background-color:white;margin-top:15px;padding-top:1%;">
+    <div class="col-md-12">
+      <p style="font-size:25px;font-weight:normal">Package Details</p>
+      <hr></hr>
+      <!-- <h3 style="color:mediumseagreen;font-weight:300;">SSC CGL</h3> -->
+    </div>
+    <div class="col-md-12 table">
+      <table class="table table-responsive table-hover table-striped">
+        <tr onclick="">
+          <td>
+            <div class="numberCircle">
+              1
+            </div>
+          </td>
+          <td>SSC CGL Tier 1 Mock 1</td>
+          <td>Buy Now</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+</div>

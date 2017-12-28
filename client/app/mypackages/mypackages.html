@@ -8,7 +8,7 @@
     </div>
     <div class="Package"ng-repeat="pack in mypackagesCtrl.packs">
     <div class="col-md-8">
-      <h3 ><a ng-click="mypackagesCtrl.buy(pack._id)"class="stylepackageAnchor">{{pack.PackName}}</a></h3>
+      <h3 ><a href="#"ng-click="mypackagesCtrl.buy(pack._id)"class="stylepackageAnchor">{{pack.PackName}}</a></h3>
       <p style="color:grey;">{{pack.NoOfTest}} Mock Tests | {{pack.specs.Maxmarks}} Marks | {{pack.specs.Duration}} Minutes</p>
       </div>
       <div class="col-md-4"style="padding-top:3%;">

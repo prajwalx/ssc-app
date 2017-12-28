@@ -3,8 +3,8 @@
 angular.module('sscTestSeriesApp')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/mypackages', {
-        template: '<mypackages></mypackages>',
+      .when('/viewpack', {
+        template: '<viewpack></viewpack>',
         authenticate:'user'
       });
   });
