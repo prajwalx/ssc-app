@@ -36,4 +36,30 @@ router.post('/',function(req,res) {
     .catch(err => next(err));
 });
 
+//isPurchased-----------------
+router.post('/GetUser',function(req,res){
+var pid=req.body.pid;
+var uid=req.body.uid;
+console.log('In myuser: '+req.body.pid);
+User.findById(uid).exec()
+    .then(user=>{
+      if(!user){
+        console.log('!user Not found');
+          return res.status(404).end();
+      }
+      var packIDs=[];
+      if(user.packIDs!==""){
+        packIDs=JSON.parse(user.packIDs);
+      }
+      for(var i in packIDs){
+        if(packIDs[i]===pid){
+            return res.send('2');//2 for Success,Yes Purchased
+            break;
+        }
+      }
+      return res.send('0');//Not Found
+    })
+      .catch(err => next(err));
+});
+
 module.exports = router;

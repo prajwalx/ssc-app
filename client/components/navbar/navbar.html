@@ -37,7 +37,7 @@
 }
 </style>
 <div class="navbar navbar-default navbar-fixed-top"style="margin-bottom:0;" ng-controller="NavbarController">
-  <div class="container">
+  <div ng-hide="hideNav" class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
         <span class="sr-only">Toggle navigation</span>
@@ -76,6 +76,14 @@
       </ul>
     </div>
   </div>
+
+<!-- Test Nav Bar -->
+  <div ng-show="hideNav" ng-init="nav.getTest()"class="container-fluid"style="background-color:mediumslateblue;color:white">
+    <div class="text-center">
+      <h3>{{nav.test.testTitle}}</h3>
+    </div>
+  </div>
+
 </div>
 
 <!-- My Admin Side NavBar -->

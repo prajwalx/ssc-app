@@ -27,7 +27,7 @@
     </ul>
     </div>
 
-    <div class="col-md-4 text-center v-center">
+    <div class="col-md-4 text-center"ng-hide="viewpackCtrl.p">
       <div class=" pricePanelFoot ">
         <br>
         <h3 style="color:mediumseagreen;vertical-align:middle">&#8377;{{viewpackCtrl.pack.Price}}/-</h3>
@@ -35,7 +35,7 @@
         <!-- <button class="btn btn-lg">Buy Now</button> -->
       </div>
       <br>
-      <button ng-hide="mypackagesCtrl.isPurchased(pack._id)"type="button" class="btn btn-lg buyviewpackbtn "ng-click="mypackagesCtrl.buy(pack._id)">
+      <button ng-hide="mypackagesCtrl.isPurchased(pack._id)"type="button" class="btn btn-lg buyviewpackbtn "ng-click="viewpackCtrl.buy()">
         BUY NOW
       </button>
     </div>
@@ -48,18 +48,41 @@
       <hr></hr>
       <!-- <h3 style="color:mediumseagreen;font-weight:300;">SSC CGL</h3> -->
     </div>
-    <div class="col-md-12 table">
-      <table class="table table-responsive table-hover table-striped">
-        <tr onclick="">
+    <div class="col-md-12 table"style="overflow-x:scroll;">
+      <table class="table table-responsive table-hover ">
+        <tr ng-repeat="test in viewpackCtrl.tests">
           <td>
             <div class="numberCircle">
-              1
+              {{$index+1}}
             </div>
           </td>
-          <td>SSC CGL Tier 1 Mock 1</td>
-          <td>Buy Now</td>
+          <td><h4 style="line-height:25px">{{test.testTitle}}</h4></td>
+          <td>
+            <div class="text-right"style="line-height:25px">
+              <button ng-hide="viewpackCtrl.p||$index<2"type="button" class="btn btn-lg buytounlock
+               "ng-click="viewpackCtrl.buy()">
+              <span class="glyphicon glyphicon-lock"></span> BUY TO UNLOCK
+              </button>
+
+              <button ng-show="viewpackCtrl.p||$index<2"type="button" class="btn btn-lg buyviewpackbtn
+               "ng-click="viewpackCtrl.Attempt(test,$index)">
+               ATTEMPT NOW
+              </button>
+
+              <button ng-show=""type="button" class="btn btn-lg attempted
+               "ng-click="mypackagesCtrl.buy(pack._id)">
+               ATTEMPTED
+              </button>
+          </div>
+        </td>
         </tr>
       </table>
+    </div>
+  </div>
+
+  <div class="col-md-10 col-md-offset-1"style="background-color:white;margin-top:15px;padding-top:1%;margin-bottom:20px;">
+    <div class="col-md-12">
+    <h4>If you are facing any issue, mail us at <a href="mailto:prajwalbhati@hotmail.com?subject=feedback">prajwalbhati@hotmail.com</a></h4>
     </div>
   </div>
 

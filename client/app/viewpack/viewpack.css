@@ -39,3 +39,29 @@
   color: mediumseagreen;
   border: 2px solid mediumseagreen;
 }
+.buytounlock{
+  border-radius: 0;
+  font-weight: bold;
+  border: solid 2px whitesmoke;
+  background-color: lightgrey;
+  color:grey;
+  transition: box-shadow 0.5s;
+}
+.buytounlock:hover{
+  /*background-color: mediumseagreen;*/
+  box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  color:grey;
+}
+.attempted{
+  border-radius: 0;
+  font-weight: bold;
+  border: solid 2px whitesmoke;
+  background-color: skyblue;
+  color:white;
+  transition: box-shadow 0.5s;
+}
+.attempted:hover{
+  /*background-color: mediumseagreen;*/
+  box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  color:white;
+}
