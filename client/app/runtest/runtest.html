@@ -1,0 +1,124 @@
+<div class="container-fluid">
+  <div class="row">
+    <div ng-show="runtestCtrl.page1"class="col-md-9"style="margin-top:30px;border-right:solid 2px black">
+
+      <div class="text-center">
+        <b>Please read the following instructions carefully</b>
+      </div>
+      <br>
+      <div class="text-left">
+        <b><u>General Instructions:</u></b>
+        <ol>
+          <li style="font-size:13px;">The clock has been set at the server and the countdown timer at the top right corner of your screen will display the time remaining for you to complete the exam. When the clock runs out the exam ends by default - you are not required to end or submit your exam.</li><br>
+          <li style="font-size:13px;">The question palette at the right of screen shows one of the following statuses of each of the questions numbered:<br><br>
+1	You have not visited the question yet.<br><br>
+3	You have not answered the question.<br><br>
+5	You have answered the question.<br><br>
+7	You have NOT answered the question but have marked the question for review.<br><br>
+    9	You have answered the question but marked it for review.<br><br>
+The Marked for Review status simply acts as a reminder that you have set to look at the question again.<span style="color:red">If an answer is selected for a question that is Marked for Review, the answer will be considered in the final evaluation.</span></li>
+        </ol>
+        <div class="text-left">
+          <b><u>Navigating to a question:</u></b>
+        </div>
+        <br>
+        <ol start="3"style="font-size:13px;">
+          <li>To select a question to answer, you can do one of the following:<br>
+              <ol type="a">
+                <li>Click on the question number on the question palette at the right of your screen to go to that numbered question directly. Note that using this option does NOT save your answer to the current question.</li>
+                <li>Click on Save and Next to save answer to current question and to go to the next question in sequence.</li>
+                <li>Click on Mark for Review and Next to save answer to current question, mark it for review, and to go to the next question in sequence.</li>
+              </ol>
+          </li><br>
+          <li>You can view the entire paper by clicking on the <b>Question Paper</b> button.</li>
+        </ol>
+
+        <div class="text-left">
+          <b><u>Answering Questions</u></b>
+        </div>
+        <br>
+        <ol start="5"style="font-size:13px;">
+          <li>For multiple choice type question :<br>
+              <ol type="a">
+                <li>To select your answer, click on one of the option buttons</li><br>
+                <li>To change your answer, click the another desired option button</li><br>
+                <li>To save your answer, you MUST click on <b>Save & Next</b></li><br>
+                <li>To deselect a chosen answer, click on the chosen option again or click on the <b>Clear Response button.</b></li><br>
+                <li>To mark a question for review click on <b>Mark for Review & Next</b>.<span style="color:red">If an answer is selected for a question that is Marked for Review, the answer will be considered in the final evaluation.</span></li><br>
+
+              </ol>
+          </li>
+          <li>To change an answer to a question, first select the question and then click on the new answer option followed by a click on the <b>Save & Next</b> button.</li><br>
+          <li>Questions that are saved or marked for review after answering will ONLY be considered for evaluation.</li>
+        </ol>
+
+        <div class="text-left">
+          <b><u>Navigating through sections</u></b>
+        </div>
+        <br>
+        <ol start="8"style="font-size:13px;">
+          <li>Sections in this question paper are displayed on the top bar of the screen. Questions in a section can be viewed by clicking on the section name. The section you are currently viewing is highlighted.</li><br>
+          <li>After clicking the Save & Next button on the last question for a section, you will automatically be taken to the first question of the next section.</li><br>
+          <li>You can move the mouse cursor over the section names to view the status of the questions for that section.</li><br>
+          <li>You can shuffle between sections and questions anytime during the examination as per your convenience.</li><br>
+        </ol>
+
+        <div class="text-center">
+          <h3><a href="#"ng-click="runtestCtrl.page1=false;runtestCtrl.page2=true;">Next>></a></h3>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div ng-show="runtestCtrl.page2"class="col-md-9"style="margin-top:30px;border-right:solid 2px black">
+      <div class="text-center">
+        <h3>{{runtestCtrl.test.testTitle}}</h3>
+      </div>
+      <div class="text-left">
+        <ol style="font-size:17px;">
+          <li>Total Number of questions are {{runtestCtrl.testType.NoOfQu}}, each questions is of {{runtestCtrl.testType.PositiveMark}} mark</li>
+          <li>This Paper consist of {{runtestCtrl.testType.Qtypes.length}} Section:
+              <ol type="A">
+                <li ng-repeat="qt in runtestCtrl.testType.Qtypes">{{qt}}</li>
+              </ol>
+              <p>Each section has {{runtestCtrl.testType.NoOfQu/runtestCtrl.testType.Qtypes.length}} questions of {{runtestCtrl.testType.Maxmarks/runtestCtrl.testType.Qtypes.length}} marks</p>
+          </li>
+          <li>The paper carries negative marking {{runtestCtrl.testType.NegativeMark}} marks will be deducted for each wrong answer.</li>
+          <li>The time for the paper is {{runtestCtrl.testType.Duration}} minutes</li>
+          <li>Answer the questions as quickly and as carefully as you can. Some questions may be difficult and others easy. Do not spend too much time on any question.</li><br>
+          <li>Mobile phones and wireless communication device are completely banned in the examination halls/rooms. Candidates are advised not to keep mobile phones/any other wireless communication devices with them even switching it off, in their own interest. Failing to comply with this provision will be considered as using unfair means in the examination and action will be taken against them including cancellation of their candidature.</li><br>
+        </ol>
+      </div>
+      <hr>
+      <div class="text-center">
+      <p><a href="#"ng-click="runtestCtrl.page1=true;runtestCtrl.page2=false;"><< Previous</a></p>
+      </div>
+      <br>
+
+      <form class="form" name="form"novalidate>
+      <div class="checkbox">
+      <label style="color:red;"><input type="checkbox" value=""ng-model="runtestCtrl.check"required>The computer provided to me is in proper working condition. I have read and understood the instructions given above.</label>
+      </div>
+
+      <br>
+
+      <div class="text-center">
+        <h3><a href="#"ng-click="runtestCtrl.startTest(form)">I am ready to begin</a></h3>
+      </div>
+      </form>
+    </div>
+  <!-- Page 2 Ends -->
+
+    <div class="col-md-3"style="margin-top:30px;">
+    <div class="affix">
+      <div class="img"style="height:250px;width:250px;">
+        <img src="/assets/images/NewCandidateImage.jpg"width="100%"height="100%" alt="">
+      </div>
+    </div>
+    </div>
+
+
+
+  </div>
+</div>

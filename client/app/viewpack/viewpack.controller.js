@@ -76,8 +76,8 @@ class ViewpackComponent {
   Attempt(t,ind){
     if(this.p||ind<2){
       sessionStorage.setItem('tid',t._id);
-      alert('Now Test');
-      // location.href='/'
+      //alert('Now Test');
+      location.href='/runtest';
     }
   }
 }
