@@ -84,14 +84,22 @@ class RuntestComponent {
 
       });
   }
+
+  /*
+  First 2 tests are free
+  */
   isFreeTest(){
     for(var i in this.pack.TestIDs){
-      if(i<2&&this.pack.TestIDs===this.tid)
-      return true;
+      if(i<2&&this.pack.TestIDs[i]===this.tid){
+        return true;
+      }
     }
     return false;
   }
 
+  /*
+  Get Test-type i.e., information of test:Marks,Duration,Qtypes,etc
+  */
   GetTestType(){
     this.$http.get('/api/testtypes/'+this.test.testType)
       .then(res=>{
@@ -103,6 +111,9 @@ class RuntestComponent {
       });
   }
 
+  /*
+  On: ng-click I am ready to begin Test :Start Test
+  */
   startTest(form){
     if(form.$valid&&this.testType&&this.questions.length===this.testType.NoOfQu){
       this.page1=false;
@@ -116,8 +127,7 @@ class RuntestComponent {
       this.$rootScope.$broadcast('timer-start');
 
       //Init first question
-      this.activeQuestion=this.questions[0];
-      this.activeQuestion.qno=0;
+      this.loadQuestion(0);//Load this.questions[0];
       // alert("TEST START NOW");
     }
     else if(form.$valid){
@@ -134,13 +144,9 @@ class RuntestComponent {
     alert('Please tick the checkbox to continue : ');
   }
 
-  section(section){
-    //Load this section Logic here
-    var ind=this.testType.Qtypes.indexOf(section);//0,1,2,3: LR,GK,MA,ENG
-    var multiple=this.questions.length/this.testType.Qtypes.length;//100/4=25;100/1=100;
-    this.activeQuestion=this.questions[ind*multiple];//0-24 => 25 Questions
-    this.activeQuestion.qno=ind*multiple;//Qno to display only:This is index ,Increment by one in HTML
-  }
+  /*
+  Get All Questions of this test
+  */
 
   GetQuestions(){
 
@@ -151,6 +157,10 @@ class RuntestComponent {
     }
     console.log(this.questions);
   }
+
+  /*
+  Get this Question Async from loop of GetQuestions()
+  */
 
   GetThisQuest(i){
     this.$http.get('/api/questions/'+this.test.questionIDs[i])
@@ -164,7 +174,34 @@ class RuntestComponent {
       });
   }
 
+  /*
+  Ng-click top Section:LR,GK,MA,ENG
+  */
+  section(section){
+    //Load this section Logic here
+
+    //Load first question of this Section
+    var ind=this.testType.Qtypes.indexOf(section);//0,1,2,3: LR,GK,MA,ENG
+    var multiple=this.questions.length/this.testType.Qtypes.length;//100/4=25;100/1=100;
+    //0-24 => 25 Questions
+    //Qno to display only:This is index ,Increment by one in HTML
+    this.loadQuestion(ind*multiple);//0,25,50,75
+  }
+
+  /*
+  Load A Question onto Screen During Test
+  */
+  loadQuestion(index){
+    this.activeQuestion=this.questions[index];
+    this.activeQuestion.qno=index;
+  }
+
   //Helper Functions
+
+  /*
+  Is The String JSON string ;
+  To avoid JSON.parse on already parsed Data
+  */
    isJson(str) {
     try {
         JSON.parse(str);
@@ -173,7 +210,10 @@ class RuntestComponent {
     }
     return true;
   }
-  //preloadImage
+
+  /*
+  Pre Load Images Before Starting Test
+  */
    preloadImage(url){
      if(url!==''){
     var img=new Image();
