@@ -1,5 +1,7 @@
 <div class="container-fluid">
   <div class="row">
+
+    <!-- Page 1 Instructions  -->
     <div ng-show="runtestCtrl.page1"class="col-md-9"style="margin-top:30px;border-right:solid 2px black">
 
       <div class="text-center">
@@ -69,8 +71,9 @@ The Marked for Review status simply acts as a reminder that you have set to look
 
       </div>
     </div>
+   <!-- Page 1 Instructions Ends -->
 
-    <!-- Page 2 -->
+    <!-- Page 2 Instructions Start -->
     <div ng-show="runtestCtrl.page2"class="col-md-9"style="margin-top:30px;border-right:solid 2px black">
       <div class="text-center">
         <h3>{{runtestCtrl.test.testTitle}}</h3>
@@ -108,17 +111,254 @@ The Marked for Review status simply acts as a reminder that you have set to look
       </div>
       </form>
     </div>
-  <!-- Page 2 Ends -->
+  <!-- Page 2 Instruction Ends -->
 
-    <div class="col-md-3"style="margin-top:30px;">
+    <!-- Instruction Side Panel Static Starts -->
+    <div ng-show="!runtestCtrl.starttest"class="col-md-3"style="margin-top:30px;">
     <div class="affix">
       <div class="img"style="height:250px;width:250px;">
         <img src="/assets/images/NewCandidateImage.jpg"width="100%"height="100%" alt="">
       </div>
     </div>
     </div>
+    <!-- Instruction Side Panel Static Ends -->
+
+
+  <!-- Row Ends -->
+  </div>
+
+  <div class="row"id="testRow"ng-show="runtestCtrl.starttest"style="">
+    <!-- Test Begins -->
+
+    <!-- Sections Top -->
+    <div class="col-md-9 "id="topsection"style="z-index:999;background:white;margin-top:15px;border:solid 2px lightgrey;">
+
+        <h4 style="margin-top:-10px;background:white;width:70px;">Sections</h4>
+      <div class="col-md-12">
+
+        <button ng-repeat="section in runtestCtrl.testType.Qtypes"
+         ng-class="{'activeSection':runtestCtrl.sectionStyling===section}"
+         ng-click="runtestCtrl.section(section);runtestCtrl.sectionStyling=section;"
+         type="button" class="btn btn-lg section"onmouseover="hoverOnSection(event,'sectionData')"onmouseout="hoverOnSection(event,'sectionData')">{{section}}
+       </button>
+      </div>
+
+      <br>
+        <!-- Qno- Positive Mark - Negative Mark Starts-->
+        <div class="text-left col-md-6">
+          <span class="text-left"style="">
+            <b>Question no</b>:{{runtestCtrl.activeQuestion.qno+1}}
+          </span>
+        </div>
+
+        <div class="text-right col-md-6">
+          <span class="text-left"style="">
+            <b>Maximum Marks</b>:{{runtestCtrl.testType.PositiveMark}}
+          </span>
+          <span class="text-left"style="">
+            <b>Negative Marks</b>:-{{runtestCtrl.testType.NegativeMark}}
+          </span>
+        </div>
+        <!-- Qno- Positive Mark - Negative Mark Ends -->
+
+   </div>
+  <!-- Section top Ends -->
+
+  <!-- Side Panel Timer ,Photo Starts -->
+  <div class="sidepanelTest col-md-3"style="background:white;margin-top:15px;">
+    <div class="col-md-4"style="">
+      <div class="img"style="width:100px;height:100px;">
+      <img src="/assets/images/NewCandidateImage.jpg"width="100%"height="100%" alt="">
+      </div>
+    </div>
+    <div class="col-md-8 ">
+      <strong><h4>Time-Left: 00:59:23</h4></strong>
+      <p>UserName</p>
+    </div>
+  </div>
+  <!-- Side Panel Timer ,Photo Ends -->
+
+   <!-- Question Starts -->
+  <div ng-model="runtestCtrl.activeQuestion"
+    class="col-md-9"id="questionSection"style="padding:7px;padding-left:15px;border:solid 2px lightgrey;max-height:500px;overflow-y:scroll;">
+
+      <!-- Question String -->
+      <h4>{{runtestCtrl.activeQuestion.question}}</h4>
+
+      <!-- Question IMG if any -->
+      <div ng-show="runtestCtrl.activeQuestion.quesImg" class=""style="height:200px;width:300px;overflow:hidden">
+        <img src=""ng-src="{{runtestCtrl.activeQuestion.quesImg}}"width="100%"height="100%" alt="No Img">
+      </div>
+
+      <!-- Single Choice (2,-0.5) -->
+      <p style="color:grey">Single Choice ({{runtestCtrl.testType.PositiveMark}},-{{runtestCtrl.testType.NegativeMark}})</p>
+
+
+      <div class="form-group"style="padding:20px;">
+        <!-- <label>Answer</label><br> -->
+        <label class="radio">
+          <input type="radio" name="optradio"ng-model="addquestionCtrl.Ans"value="1"required>{{runtestCtrl.activeQuestion.a}}
+        </label>
+        <label class="radio">
+          <input type="radio" name="optradio"ng-model="addquestionCtrl.Ans"value="2"required>{{runtestCtrl.activeQuestion.b}}
+        </label>
+        <label class="radio">
+          <input type="radio" name="optradio"ng-model="addquestionCtrl.Ans"value="3"required>{{runtestCtrl.activeQuestion.c}}
+        </label>
+        <label class="radio">
+          <input type="radio" name="optradio"ng-model="addquestionCtrl.Ans"value="4"required>{{runtestCtrl.activeQuestion.d}}
+        </label>
+      </div>
+      <!-- <br><br><br><br><br><br> -->
+
+  </div>
+  <!-- Question Ends -->
+
+  <!-- SidePanel Question Pallete Starts-->
+  <div class="sidepanelTest col-md-3"style="background:#cfecf7;margin-top:0px;min-height:457px;">
+    <h5>You are viewing <strong>General Intelligence and Reasoning</strong> section</h5>
+    <h5>Question Pallete:</h5>
+
+    <div class="text-center">
+      <!--  ng-class based on property-->
+
+      <button ng-repeat="question in runtestCtrl.questions" type="button" class="btn btn-default"style="background-image:url(/assets/images/not_visited.png);background-color:transparent;height:30px;width:34px;border:inherit;">
+        <p><strong>{{runtestCtrl.questions.indexOf(question)+1}}</strong></p>
+      </button>
+    </div>
+
+    <!-- Legends Starts -->
+    <br><br><br>
+    <strong><h4>Legend</h4></strong>
+    <table class="table table-responsive">
+      <tr>
+        <td>Answered</td>
+        <td>Not Answered</td>
+      </tr>
+      <tr>
+        <td>Marked</td>
+        <td>Not Visited</td>
+      </tr>
+    </table>
+    <!-- Legends Ends -->
+
+    <!-- Side Bottom Buttons Starts-->
+    <div class=""style="bottom:0;">
+      <table class="table table-responsive">
+        <tr>
+          <td>
+            <button type="button" class="btn btn-default"style="width:100%;">
+              Profile
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default"style="width:100%;">
+              Instruction
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="button" class="btn btn-default"style="width:100%;">
+              Question Paper
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default"style="width:100%;">
+              Submit
+            </button>
+          </td>
+        </tr>
+      </table>
+      </div>
+    <!-- Side Bottom Buttons Ends-->
 
 
 
   </div>
+  <!-- SidePanel Question Pallete Ends -->
+
+  <!-- Bottom Navigation: Next/Clear Response/Mark for Review -->
+  <div id="bottomSection"class="col-md-9 "style="z-index:999;background:white;margin-top:0px;border:solid 2px lightgrey">
+
+  <div class="col-md-12"style="padding-left:0;">
+
+    <div class="text-left">
+      <button type="button" class="btn btn-md"style="border:0;background-color:#cfecf7;">
+        Mark for Review & Next
+      </button>
+
+      <button type="button" class="btn btn-md"style="border:0;background-color:#cfecf7;">
+        Clear Response
+      </button>
+
+        <button type="button" class="btn btn-primary btn-md pull-right"style="color:white;font-weight:bold;border-radius:0;">
+          Save & Next
+        </button>
+
+      </div>
+
+    </div>
+
+   </div>
+  <!-- Bottom Navigation Ends -->
+
+  </div>
+  <!-- Row Ends -->
 </div>
+<!-- Container Ends -->
+
+<!-- hoverOnSection Starts -->
+<div id="sectionData"style="background-color:#cfecf7;display:none;padding:20px;border:solid 2px navy;">
+  <table class="table table-responsive table-condensed">
+    <tr>
+      <th colspan="2"><center>General Awareness</center></th>
+    </tr>
+    <tr>
+      <td>Answered</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Not Answered</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Marked For Review</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Not Visited</td>
+      <td>1</td>
+    </tr>
+  </table>
+</div>
+<!-- Hover Section Ends -->
+
+<!-- Style Scripts -->
+<!-- Hover on Sections LR,GK,MA -->
+<script type="text/javascript">
+  function hoverOnSection(e,divid){
+        var left  = e.clientX  + "px";
+        // var top  = e.clientY  + "px";
+        var top = 133+"px";
+
+        var div = document.getElementById(divid);
+
+
+        $("#"+divid).css('left',left);
+        $("#"+divid).css('top',top);
+        $("#"+divid).css('position','fixed');
+        $("#"+divid).css('z-index','1000');
+        console.log(div);
+        $("#"+divid).toggle();
+        return false;
+  }
+</script>
+<!-- Hover on Sections Ends -->
+
+<!-- Make height of side panel equal to left section -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    console.log('ready');
+  });
+</script>

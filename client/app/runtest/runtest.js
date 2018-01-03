@@ -4,6 +4,7 @@ angular.module('sscTestSeriesApp')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/runtest', {
-        template: '<runtest></runtest>'
+        template: '<runtest></runtest>',
+        authenticate:'user'
       });
   });

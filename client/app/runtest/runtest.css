@@ -1,0 +1,42 @@
+.section{
+  background-color: white;
+  text-align: center;
+  border: solid 2px navy;
+  color: black;
+  border-radius: 0;
+  margin-bottom: 10px;
+  margin-right: 5px;
+}
+.section:hover{
+  color: inherit;
+}
+.activeSection{
+  color: white !important;
+  background-color: #428bca;
+}
+
+  /*NO NEED OF BELOW CODE AS OF NOW IF UR SCREEN IS SMALL SCROLL*/
+/*
+When Screen width get's larger than 993 px; Affix section to Top
+*/
+@media only screen and (min-width: 993px) {
+  #testRow{
+    /*position: fixed;*/
+    /*overflow-y: scroll;*/
+  }
+  #topsection{
+    /*position: fixed;*/
+    /*height:20vh;*/
+  }
+  #questionSection{
+    /*height:500px;*/
+    /*position: fixed;*/
+    /*max-height: 300px !important;*/
+    /*margin-top: 122px;*/
+  }
+  #bottomSection{
+    /*margin-bottom: 0;*/
+    /*position:sticky;*/
+    /*margin-top: 122px;*/
+  }
+}
