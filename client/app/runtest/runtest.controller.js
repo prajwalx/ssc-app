@@ -1,5 +1,8 @@
 'use strict';
-
+/*
+Angular-Timer from:
+http://siddii.github.io/angular-timer/examples.html#/angularjs-single-timer
+*/
 (function(){
 
 class RuntestComponent {
@@ -23,6 +26,14 @@ class RuntestComponent {
 
     $scope.$on('$destroy', function() {
     this.$rootScope.hideNav=false;
+    });
+
+    /*
+    On Timer Stop Submit Test
+    */
+    $scope.$on('timer-stopped', function (event, data){
+    console.log('Timer Stopped - data = ', data);
+    alert("Time Over Test Will Be Submitted");
     });
   }
 
@@ -98,6 +109,12 @@ class RuntestComponent {
       this.page2=false;
       this.VerifyTest();
       this.starttest=true;
+
+      /*
+      Start Angular-Timer
+      */
+      this.$rootScope.$broadcast('timer-start');
+
       //Init first question
       this.activeQuestion=this.questions[0];
       this.activeQuestion.qno=0;
@@ -119,6 +136,10 @@ class RuntestComponent {
 
   section(section){
     //Load this section Logic here
+    var ind=this.testType.Qtypes.indexOf(section);//0,1,2,3: LR,GK,MA,ENG
+    var multiple=this.questions.length/this.testType.Qtypes.length;//100/4=25;100/1=100;
+    this.activeQuestion=this.questions[ind*multiple];//0-24 => 25 Questions
+    this.activeQuestion.qno=ind*multiple;//Qno to display only:This is index ,Increment by one in HTML
   }
 
   GetQuestions(){

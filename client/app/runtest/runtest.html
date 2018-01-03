@@ -172,7 +172,11 @@ The Marked for Review status simply acts as a reminder that you have set to look
       </div>
     </div>
     <div class="col-md-8 ">
-      <strong><h4>Time-Left: 00:59:23</h4></strong>
+      <strong><h4>
+        Time-Left:
+        <timer autostart="false" interval="1000"countdown="72">{{hhours}}{{hourS}}:{{mminutes}}{{minuteS}}:{{sseconds}}{{secondS}}
+        </timer>
+      </h4></strong>
       <p>UserName</p>
     </div>
   </div>
