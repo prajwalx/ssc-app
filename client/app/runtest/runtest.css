@@ -14,6 +14,25 @@
   color: white !important;
   background-color: #428bca;
 }
+/*
+Question Pallete classes
+*/
+.answered{
+  background-image:url(/assets/images/answered.png);
+  color:white;
+}
+.not_answered{
+  background-image:url(/assets/images/not_answered.png);
+  color:white;
+}
+.not_visited{
+  background-image:url(/assets/images/not_visited.png);
+  color:black;
+}
+.markReview{
+  background-image:url(/assets/images/review.png);
+  color:white;
+}
 
   /*NO NEED OF BELOW CODE AS OF NOW IF UR SCREEN IS SMALL SCROLL*/
 /*

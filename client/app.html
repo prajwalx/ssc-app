@@ -67,7 +67,21 @@
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
     <!-- Not Injected by bower -->
-    <script src="bower_components/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+       "fast-preview": {disabled:true},
+       "HTML-CSS": {
+        linebreaks: { automatic: true, width: "container" }
+      },
+       tex2jax: {
+         preview: "none",
+         inlineMath: [["$","$"],["\\(","\\)"]]
+       }
+
+      });
+  </script>
+  <!--  -->
+    <script src="bower_components/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <!-- build:js({client,node_modules}) app/vendor.js -->
       <!-- bower:js -->
       <script src="bower_components/jquery/dist/jquery.js"></script>
