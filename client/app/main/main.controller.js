@@ -17,6 +17,7 @@
 
     $onInit() {
       sessionStorage.setItem('pid','');
+      this.socket.sendMsg('Hello World');
       // this.$http.get('/api/things')
       //   .then(response => {
       //     this.awesomeThings = response.data;

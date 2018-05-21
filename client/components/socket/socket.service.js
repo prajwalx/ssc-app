@@ -72,6 +72,13 @@ angular.module('sscTestSeriesApp')
       unsyncUpdates(modelName) {
         socket.removeAllListeners(modelName + ':save');
         socket.removeAllListeners(modelName + ':remove');
+      },
+
+      sendMsg(msg){
+        socket.emit('message', {
+        message: msg
+      });
       }
+
     };
   });
