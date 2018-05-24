@@ -29,6 +29,7 @@ angular.module('sscTestSeriesApp')
        */
       syncUpdates(modelName, array, cb) {
         cb = cb || angular.noop;
+        //angular.noop is an empty function that can be used as a placeholder when you need to pass some function as a param.
 
         /**
          * Syncs item creation/updates on 'model:save'
@@ -74,11 +75,46 @@ angular.module('sscTestSeriesApp')
         socket.removeAllListeners(modelName + ':remove');
       },
 
+      unsyncUpdatesQuestionUpload(){
+        socket.removeAllListeners('UploadSuccess');
+      },
+
       sendMsg(msg){
         socket.emit('message', {
         message: msg
       });
-      }
+     },
+
+     UploadImageToServer(imgdata,format,name,count){
+       //count is array ,becoz it's passed by reference,thus updates reflect in addquestionCtrl(controller)
+       //this is quick fix, // TODO: pass by refernce : pass args as an object ,
+       //but everything works good now also :)
+
+       //Upload File
+       socket.emit('imageUpload',{
+          image: true,
+           buffer: imgdata ,
+           format:format,
+           name:name
+         });
+
+         //listeners for reply from server
+        socket.on('UploadSuccess',function(status){
+          socket.removeAllListeners('UploadSuccess');//to avoid double msgs
+
+          if(status==='true'){
+          alert('Successfully Uploaded !!');
+          count[0]++;
+          }
+          else{
+            if(status.substring(0,6)==='EEXIST')
+              count[0]++;//IF same file is already uploaded then no need for re-uploading
+          alert(status);
+          }
+
+        });
+     }
+     //UploadImageToServer My Function Ends
 
     };
   });

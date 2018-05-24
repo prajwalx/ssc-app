@@ -22,6 +22,10 @@ if (config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();
+
+//serve images statically
+app.use(express.static(__dirname+'/api/question/images'));
+
 var server = http.createServer(app);
 var socketio = require('socket.io')(server, {
   serveClient: config.env !== 'production',

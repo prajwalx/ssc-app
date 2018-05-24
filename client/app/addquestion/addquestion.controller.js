@@ -20,9 +20,11 @@ class AddquestionComponent {
     this.questypes=[];
     this.Questions=[];
     this.QuestionId;
+    this.counter=[];//counts no of uploads
 
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('question');
+      socket.unsyncUpdatesQuestionUpload();//Remove Listener for `UploadSuccess` // TODO: Remove this function if Unnecessary
     });
 
   }
@@ -45,28 +47,51 @@ class AddquestionComponent {
       this.Questions=response.data;
       this.socket.syncUpdates('question', this.Questions);
     });
+
+    this.counter.push(0);//counter={0,NULL}//array of size 1
+  }
+
+  AllUploaded(){
+    var qurl=( $('.img-upload').eq(0).parents('.form-group').find(':text').val()),
+        aurl=( $('.img-upload').eq(1).parents('.form-group').find(':text').val()),
+        burl=( $('.img-upload').eq(2).parents('.form-group').find(':text').val()),
+        curl=( $('.img-upload').eq(3).parents('.form-group').find(':text').val()),
+        durl=( $('.img-upload').eq(4).parents('.form-group').find(':text').val()),
+        surl=( $('.img-upload').eq(5).parents('.form-group').find(':text').val());
+    var count=0;
+    if(qurl!=='')count++;
+    if(aurl!=='')count++;
+    if(burl!=='')count++;
+    if(curl!=='')count++;
+    if(durl!=='')count++;
+    if(surl!=='')count++;
+
+    if (this.counter[0]>=count)
+    return true;
+    else alert('Upload All Files');
+    return false;
   }
 
   Create(form){
     this.submitted=true;
     console.log(form);
-    if(form.$valid){
+    if(form.$valid&&this.AllUploaded()){
       console.log(this.Ans);
       this.$http.post('/api/questions',{
         question:this.Inputquestion,
         questype:this.questionType,
-        quesImg:this.InputquestionURL,//URL Amazon S3 CDN
+        quesImg:encodeURIComponent(( $('.img-upload').eq(0).parents('.form-group').find(':text').val()).trim()),//URL Amazon S3 CDN
         a:this.OptionA,//1
         b:this.OptionB,//2
         c:this.OptionC,//3
         d:this.OptionD,//4
-        aURL:this.OptionAURL,
-        bURL:this.OptionBURL,
-        cURL:this.OptionCURL,
-        dURL:this.OptionDURL,
+        aURL:encodeURIComponent(( $('.img-upload').eq(1).parents('.form-group').find(':text').val()).trim()),
+        bURL:encodeURIComponent(( $('.img-upload').eq(2).parents('.form-group').find(':text').val()).trim()),
+        cURL:encodeURIComponent(( $('.img-upload').eq(3).parents('.form-group').find(':text').val()).trim()),
+        dURL:encodeURIComponent(( $('.img-upload').eq(4).parents('.form-group').find(':text').val()).trim()),
         ans:this.Ans,//1,2,3,4
         solution:this.Solution,//URL
-        solutionImg:this.SolutionURL
+        solutionImg:encodeURIComponent(( $('.img-upload').eq(5).parents('.form-group').find(':text').val()).trim())
       })
       .then(response=>{
         this.submitted=false;
@@ -84,6 +109,7 @@ class AddquestionComponent {
         this.Ans='';
         this.Solution='';
         this.SolutionURL='';
+        location.reload();//reload page after Posting Data
       });
     }
   }
@@ -156,6 +182,21 @@ class AddquestionComponent {
     if(x){
       this.$http.delete('/api/questions/'+question._id);
     }
+  }
+
+  upload(ind){
+    //dirty way of getting source of image
+    var image=$('.img-upload').eq(ind).attr('src');
+    var textField = $('.img-upload').eq(ind).parents('.form-group').find(':text');
+    var format=textField.val();
+    //format = abc.png
+    var index=(format.lastIndexOf('.')+1);
+    format=format.substring(index);//format = png
+    var name=textField.val().substring(0,index-1);//name = abc
+
+    //socket function defined in components/socket.service client side
+    this.socket.UploadImageToServer(image,format,name,this.counter);//updates counter array value ++ on upload
+
   }
 
 }//class ends

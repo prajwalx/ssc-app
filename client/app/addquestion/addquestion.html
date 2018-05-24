@@ -57,7 +57,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
 <!-- <p>When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
   $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</p> -->
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label>Question Image URL</label>
           <input type="url" placeholder="Type the Question Image URL here (Optional)" name="InputquestionURL"
           class="form-control" ng-model="addquestionCtrl.InputquestionURL"ng-init="addquestionCtrl.InputquestionURL=''">
@@ -66,7 +66,27 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
           <p class="help-block" ng-show="form.InputquestionURL.$error.url && addquestionCtrl.submitted">
              Please Enter Valid URL
           </p>
+        </div> -->
+<!--  Image Upload Starts-->
+        <div class="form-group">
+            <label>Upload Question Image (Optional)</label>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-default btn-file">
+                        Browse… <input type="file" id="imgInp"onchange="readURL(this,0);">
+                    </span>
+                </span>
+                <input type="text" class="form-control" readonly>
+                <span class="input-group-btn"ng-click="addquestionCtrl.upload(0);">
+                  <span class="btn btn-default btn-success ">
+                      <span class="glyphicon glyphicon-cloud-upload">  Upload
+                      </span>
+                  </span>
+                </span>
+            </div>
+            <img class='img-upload'/>
         </div>
+<!--  Image Upload Ends-->
 
 
         <div class="form-group">
@@ -86,18 +106,26 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
           </p>
         </div>
 
-        <!-- Image Option A  -->
-        <div class="form-group">
-          <label>Option A Image URL</label>
-          <input type="url" placeholder="(Optional) CDN" name="OptionAURL"
-          class="form-control" ng-model="addquestionCtrl.OptionAURL"ng-init="addquestionCtrl.OptionAURL=''">
-        </div>
-        <div class="form-group has-error">
-          <p class="help-block" ng-show="form.OptionAURL.$error.url && addquestionCtrl.submitted">
-             Please Enter Valid URL
-          </p>
-        </div>
-        <!-- Image Option A Ends -->
+        <!--  Image Upload Starts-->
+                <div class="form-group">
+                    <label>Upload Option A Image (Optional)</label>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <span class="btn btn-default btn-file">
+                                Browse… <input type="file" id="imgInp"onchange="readURL(this,1);">
+                            </span>
+                        </span>
+                        <input type="text" class="form-control" readonly>
+                        <span class="input-group-btn"ng-click="addquestionCtrl.upload(1)">
+                          <span class="btn btn-default btn-success ">
+                              <span class="glyphicon glyphicon-cloud-upload">  Upload
+                              </span>
+                          </span>
+                        </span>
+                    </div>
+                    <img class='img-upload'/>
+                </div>
+        <!--  Image Upload Ends-->
 
         <div class="form-group">
           <label>Option B</label>
@@ -116,18 +144,26 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
           </p>
         </div>
 
-        <!-- Image Option B  -->
-        <div class="form-group">
-          <label>Option B Image URL</label>
-          <input type="url" placeholder="(Optional) CDN" name="OptionBURL"
-          class="form-control" ng-model="addquestionCtrl.OptionBURL"ng-init="addquestionCtrl.OptionBURL=''">
-        </div>
-        <div class="form-group has-error">
-          <p class="help-block" ng-show="form.OptionBURL.$error.url && addquestionCtrl.submitted">
-             Please Enter Valid URL
-          </p>
-        </div>
-        <!-- Image Option A Ends -->
+        <!--  Image Upload Starts-->
+                <div class="form-group">
+                    <label>Upload Option B Image (Optional)</label>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <span class="btn btn-default btn-file">
+                                Browse… <input type="file" id="imgInp"onchange="readURL(this,2);">
+                            </span>
+                        </span>
+                        <input type="text" class="form-control" readonly>
+                        <span class="input-group-btn"ng-click="addquestionCtrl.upload(2)">
+                          <span class="btn btn-default btn-success ">
+                              <span class="glyphicon glyphicon-cloud-upload">  Upload
+                              </span>
+                          </span>
+                        </span>
+                    </div>
+                    <img class='img-upload'/>
+                </div>
+        <!--  Image Upload Ends-->
 
         <div class="form-group">
           <label>Option C</label>
@@ -146,18 +182,26 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
           </p>
         </div>
 
-        <!-- Image Option C  -->
-        <div class="form-group">
-          <label>Option C Image URL</label>
-          <input type="url" placeholder="(Optional) CDN" name="OptionCURL"
-          class="form-control" ng-model="addquestionCtrl.OptionCURL"ng-init="addquestionCtrl.OptionCURL=''">
-        </div>
-        <div class="form-group has-error">
-          <p class="help-block" ng-show="form.OptionCURL.$error.url && addquestionCtrl.submitted">
-             Please Enter Valid URL
-          </p>
-        </div>
-        <!-- Image Option A Ends -->
+        <!--  Image Upload Starts-->
+                <div class="form-group">
+                    <label>Upload Option C Image (Optional)</label>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <span class="btn btn-default btn-file">
+                                Browse… <input type="file" id="imgInp"onchange="readURL(this,3);">
+                            </span>
+                        </span>
+                        <input type="text" class="form-control" readonly>
+                        <span class="input-group-btn"ng-click="addquestionCtrl.upload(3)">
+                          <span class="btn btn-default btn-success ">
+                              <span class="glyphicon glyphicon-cloud-upload">  Upload
+                              </span>
+                          </span>
+                        </span>
+                    </div>
+                    <img class='img-upload'/>
+                </div>
+        <!--  Image Upload Ends-->
 
         <div class="form-group">
           <label>Option D</label>
@@ -176,18 +220,26 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
           </p>
         </div>
 
-        <!-- Image Option D  -->
-        <div class="form-group">
-          <label>Option D Image URL</label>
-          <input type="url" placeholder="(Optional) CDN" name="OptionDURL"
-          class="form-control" ng-model="addquestionCtrl.OptionDURL"ng-init="addquestionCtrl.OptionDURL=''">
-        </div>
-        <div class="form-group has-error">
-          <p class="help-block" ng-show="form.OptionDURL.$error.url && addquestionCtrl.submitted">
-             Please Enter Valid URL
-          </p>
-        </div>
-        <!-- Image Option A Ends -->
+        <!--  Image Upload Starts-->
+                <div class="form-group">
+                    <label>Upload Option D Image (Optional)</label>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <span class="btn btn-default btn-file">
+                                Browse… <input type="file" id="imgInp"onchange="readURL(this,4);">
+                            </span>
+                        </span>
+                        <input type="text" class="form-control" readonly>
+                        <span class="input-group-btn"ng-click="addquestionCtrl.upload(4)">
+                          <span class="btn btn-default btn-success ">
+                              <span class="glyphicon glyphicon-cloud-upload">  Upload
+                              </span>
+                          </span>
+                        </span>
+                    </div>
+                    <img class='img-upload'/>
+                </div>
+        <!--  Image Upload Ends-->
 
         <div class="form-group">
           <label>Answer</label><br>
@@ -231,16 +283,26 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
 <!-- <p>When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
   $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</p> -->
 
-        <div class="form-group">
-          <label>Solution Image URL</label>
-          <input type="url" placeholder="Type the Solution Image URL here (Optional)" name="SolutionURL"
-          class="form-control" ng-model="addquestionCtrl.SolutionURL"ng-init="addquestionCtrl.SolutionURL=''">
-        </div>
-        <div class="form-group has-error">
-          <p class="help-block" ng-show="form.SolutionURL.$error.url && addquestionCtrl.submitted">
-             Please Enter Valid URL
-          </p>
-        </div>
+        <!--  Image Upload Starts-->
+                <div class="form-group">
+                    <label>Upload Solution Image (Optional)</label>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <span class="btn btn-default btn-file">
+                                Browse… <input type="file" id="imgInp"onchange="readURL(this,5);">
+                            </span>
+                        </span>
+                        <input type="text" class="form-control" readonly>
+                        <span class="input-group-btn"ng-click="addquestionCtrl.upload(5)">
+                          <span class="btn btn-default btn-success ">
+                              <span class="glyphicon glyphicon-cloud-upload">  Upload
+                              </span>
+                          </span>
+                        </span>
+                    </div>
+                    <img class='img-upload'/>
+                </div>
+        <!--  Image Upload Ends-->
         <br><br>
 
 
@@ -254,17 +316,28 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
           <br><br>
         </div>
 
+        <br><br><hr>
+        <input type="text"class="form-control text-center"
+        style="font-size:22px;box-shadow: 5px 10px 18px #888888;direction:rtl;padding:1px;border:0.5px solid lightgrey;"
+         name="Search" placeholder="Search Questions Here"ng-model="addquestionCtrl.Search"autofocus>
+        <br><br><br>
+
       </form>
 
+      </div>
+    </div>
+    </div>
       <!-- Types from DB Table -->
-      <div id="LoadMath"style="overflow-x:scroll">
-        <br><br><hr>
-        <input type="text"class="form-control" name="Search" placeholder="Search Questions Here"ng-model="addquestionCtrl.Search">
-        <br><br><br>
+      <div id="LoadMath"class="col-md-12 container-fluid" style="overflow-x:scroll">
+        <!-- <br><br><hr>
+        <input type="text"class="form-control text-center"
+        style="font-size:22px;box-shadow: 5px 5px lightgrey;padding:1px;border:5px solid black;"
+         name="Search" placeholder="Search Questions Here"ng-model="addquestionCtrl.Search">
+        <br><br><br> -->
         <center><button type="button" class="btn btn-success"onclick="LoadMathDB()">
           Reload Maths
         </button></center>
-      <table class="table table-responsive table-bordered">
+      <table class="table table-responsive table-bordered ">
 
         <tr>
           <th>Question</th>
@@ -330,14 +403,39 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-
       </table>
       </div>
 
-    </div>
+    <!-- </div> -->
 
     </div>
   </div>
 
   <script type="text/javascript">
-  $(document).ready(function(){
-  });
+  /*
+  called on change of file select
+  to read image as url & enable preview to user
+  input => this
+  x     => 0,1,2,3 //class selector
+  Working Good
+  */
+  function readURL(input,x) {
+    var label = $(input).val().replace(/\\/g, '/').replace(/.*\//, '');
+    // label is name of image file Ex: 1234.jpg
+
+    var textField = $(input).parents('.input-group').find(':text');
+        textField.val(label);
+
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('.img-upload').eq(x).attr('src', e.target.result);
+              // < img class="img-upload src=e.target.result />"
+          }
+
+          reader.readAsDataURL(input.files[0]);
+
+
+      }
+  }
   function LoadMathDB(){
     console.log('LoadMathDB');
     var x=document.getElementById('#LoadMath');
