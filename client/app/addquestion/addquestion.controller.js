@@ -132,11 +132,76 @@ class AddquestionComponent {
     this.SolutionURL=question.solutionImg
     this.create=false;
     this.QuestionId=question._id;
+
+    //load images for update logic
+    if(this.InputquestionURL!=='')
+    $('.img-upload').eq(0).attr('src',this.InputquestionURL);
+    if(this.OptionAURL!=='')
+    $('.img-upload').eq(1).attr('src',this.OptionAURL);
+    if(this.OptionBURL!=='')
+    $('.img-upload').eq(2).attr('src',this.OptionBURL);
+    if(this.OptionCURL!=='')
+    $('.img-upload').eq(3).attr('src',this.OptionCURL);
+    if(this.OptionDURL!=='')
+    $('.img-upload').eq(4).attr('src',this.OptionDURL);
+    if(this.SolutionURL!=='')
+    $('.img-upload').eq(5).attr('src',this.SolutionURL);
+
+  }
+
+  prepareImagesForReUpload(){
+    //During Update Mode
+    //name is empty iff image is already uploaded ,url is already encoded & is set as src of img
+    var quesImgName    = $('.img-upload').eq(0).parents('.form-group').find(':text').val();
+    var OptionAImgName = $('.img-upload').eq(1).parents('.form-group').find(':text').val();
+    var OptionBImgName = $('.img-upload').eq(2).parents('.form-group').find(':text').val();
+    var OptionCImgName = $('.img-upload').eq(3).parents('.form-group').find(':text').val();
+    var OptionDImgName = $('.img-upload').eq(4).parents('.form-group').find(':text').val();
+    var SolutionImgName= $('.img-upload').eq(5).parents('.form-group').find(':text').val();
+
+    //thus if name is '' url is encoded else user updloads new file so new uri is encoded
+      this.InputquestionURL =
+        (quesImgName==='')?
+        this.InputquestionURL
+        :
+        encodeURIComponent(( $('.img-upload').eq(0).parents('.form-group').find(':text').val()).trim());
+
+      this.OptionAURL =
+        (OptionAImgName==='')?
+        this.OptionAURL
+        :
+        encodeURIComponent(( $('.img-upload').eq(1).parents('.form-group').find(':text').val()).trim());
+
+      this.OptionBURL =
+        (OptionBImgName==='')?
+        this.OptionBURL
+        :
+        encodeURIComponent(( $('.img-upload').eq(2).parents('.form-group').find(':text').val()).trim());
+
+      this.OptionCURL =
+        (OptionCImgName==='')?
+        this.OptionCURL
+        :
+        encodeURIComponent(( $('.img-upload').eq(3).parents('.form-group').find(':text').val()).trim());
+
+      this.OptionDURL =
+        (OptionDImgName==='')?
+        this.OptionDURL
+        :
+        encodeURIComponent(( $('.img-upload').eq(4).parents('.form-group').find(':text').val()).trim());
+
+      this.SolutionURL =
+        (SolutionImgName==='')?
+        this.SolutionURL
+        :
+        encodeURIComponent(( $('.img-upload').eq(5).parents('.form-group').find(':text').val()).trim());
+
+      return true;
   }
 
   Update(form){
     this.submitted=true;
-    if(form.$valid){
+    if(form.$valid&&this.AllUploaded()&&this.prepareImagesForReUpload()){
 
       this.$http.put('/api/questions/'+this.QuestionId,{
         question:this.Inputquestion,
@@ -153,6 +218,7 @@ class AddquestionComponent {
         ans:this.Ans,//1,2,3,4
         solution:this.Solution,//URL
         solutionImg:this.SolutionURL
+
       })
       .then(response=>{
         this.submitted=false;
@@ -171,6 +237,7 @@ class AddquestionComponent {
         this.Solution='';
         this.SolutionURL='';
         this.create=true;//Set Page to Default
+        location.reload();//reload page after Posting Data
       });
 
     }
